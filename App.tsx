@@ -17,8 +17,9 @@ import {
 } from 'lucide-react';
 
 // --- Constants & Types ---
-const PLANO_BASICO_URL = "https://pay.cakto.com.br/33ftzrf_741304";
-const PLANO_COMPLETO_URL = "https://pay.cakto.com.br/3awzdjr_741300";
+const PLANO_BASICO_URL = "https://pay.wiapy.com/5IlInHQBCa";
+const PLANO_COMPLETO_URL = "https://pay.wiapy.com/d_zoKyeLA7";
+const WHATSAPP_SUPPORT_URL = "https://w.app/editoraeditalconcursos";
 
 const COVER_IMG = "https://i.ibb.co/k6Wnfq6g/Capa-de-Livro-Infantil-Ilustrado-Vibrante-PCD-Inclusivo-1.png"; 
 const PAGES_PREVIEW = [
@@ -68,8 +69,8 @@ const Headline = () => (
       
       <div className="flex flex-col items-center gap-6">
         <a 
-          href="#preview" 
-          onClick={(e) => scrollToSection(e, 'preview')}
+          href="#planos" 
+          onClick={(e) => scrollToSection(e, 'planos')}
           className="group flex items-center gap-2 bg-[#0047AB] hover:bg-blue-700 text-white px-8 py-5 rounded-xl text-xl font-bold shadow-xl shadow-blue-200 transition-all hover:-translate-y-1"
         >
           QUERO COMEÇAR DO JEITO CERTO
@@ -202,83 +203,101 @@ const ComparisonTable = () => (
   </section>
 );
 
-const PreviewSection = () => (
-  <section id="preview" className="py-20 bg-gray-900 text-white overflow-hidden">
-    <div className="max-w-7xl mx-auto px-4 mb-12">
-      <div className="flex flex-col md:flex-row justify-between items-end gap-6">
-        <div>
-          <h2 className="text-3xl font-extrabold mb-4 italic">O que você vai receber</h2>
-          <p className="text-gray-400 max-w-xl">
-            Material 100% alinhado ao último edital: Português, RLM, Informática, Ética, Direito Constitucional, Direito Administrativo e Seguridade Social.
-          </p>
-        </div>
-        <div className="bg-white/10 px-6 py-3 rounded-full border border-white/20 font-bold flex items-center gap-2">
-           <FileText className="w-5 h-5" /> PDF com Acesso Vitalício
+const PreviewSection = () => {
+  const [isPaused, setIsPaused] = useState(false);
+
+  return (
+    <section id="preview" className="py-20 bg-gray-900 text-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 mb-12">
+        <div className="flex flex-col md:flex-row justify-between items-end gap-6">
+          <div>
+            <h2 className="text-3xl font-extrabold mb-4 italic">O que você vai receber</h2>
+            <p className="text-gray-400 max-w-xl">
+              Material 100% alinhado ao último edital: Português, RLM, Informática, Ética, Direito Constitucional, Direito Administrativo e Seguridade Social.
+            </p>
+          </div>
+          <div className="bg-white/10 px-6 py-3 rounded-full border border-white/20 font-bold flex items-center gap-2">
+             <FileText className="w-5 h-5" /> PDF com Acesso Vitalício
+          </div>
         </div>
       </div>
-    </div>
 
-    <div className="relative">
-      <div className="animate-marquee gap-8 py-4">
-        {[...PAGES_PREVIEW, ...PAGES_PREVIEW].map((src, i) => (
-          <div key={i} className="w-64 md:w-80 h-auto bg-white rounded-lg shadow-2xl transform hover:scale-105 transition-transform overflow-hidden">
-             <img src={src} alt={`Preview ${i}`} className="w-full h-auto object-cover" />
+      <div className="relative">
+        <div 
+          className={`animate-marquee gap-8 py-4 ${isPaused ? '[animation-play-state:paused]' : ''}`}
+          onClick={() => setIsPaused(!isPaused)}
+        >
+          {[...PAGES_PREVIEW, ...PAGES_PREVIEW].map((src, i) => (
+            <div key={i} className="w-64 md:w-80 h-auto bg-white rounded-lg shadow-2xl transform hover:scale-105 transition-transform overflow-hidden cursor-pointer">
+               <img src={src} alt={`Preview ${i}`} className="w-full h-auto object-cover pointer-events-none" />
+            </div>
+          ))}
+        </div>
+        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-gray-900 to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-gray-900 to-transparent z-10 pointer-events-none"></div>
+        
+        <div className="text-center mt-8">
+          <p className="text-gray-500 text-sm flex items-center justify-center gap-2">
+            <HelpCircle className="w-4 h-4" /> Clique em uma página para pausar e ler
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const BonusSection = () => (
+  <section className="py-20 bg-gradient-to-b from-white to-blue-50">
+    <div className="max-w-5xl mx-auto px-4">
+      <div className="text-center mb-12">
+        <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 italic uppercase tracking-tighter">
+          Bônus <span className="text-[#0047AB]">Exclusivos</span>
+        </h2>
+        <p className="text-gray-600 font-medium">Tudo isso será seu <span className="text-green-600 font-bold">GRATUITAMENTE</span> ao garantir o Plano Completo hoje.</p>
+      </div>
+
+      <div className="grid md:grid-cols-3 gap-6">
+        {[
+          {
+            title: "1.500 Questões Inéditas",
+            desc: "Pratique com o nível real da prova e comentários detalhados.",
+            price: "R$ 29,90",
+            icon: <HelpCircle className="w-8 h-8 text-blue-600" />
+          },
+          {
+            title: "Mapas Mentais",
+            desc: "Memorize em segundos o que demoraria horas de leitura cansativa.",
+            price: "R$ 26,90",
+            icon: <Book className="w-8 h-8 text-blue-600" />
+          },
+          {
+            title: "Planilha de Estudos",
+            desc: "Sua organização diária pronta para usar, do zero à aprovação.",
+            price: "R$ 12,90",
+            icon: <Clock className="w-8 h-8 text-blue-600" />
+          }
+        ].map((bonus, i) => (
+          <div key={i} className="bg-white p-8 rounded-3xl border-2 border-blue-100 shadow-xl shadow-blue-100/50 relative overflow-hidden group hover:-translate-y-2 transition-all">
+            <div className="absolute top-0 right-0 bg-red-500 text-white px-4 py-1 rounded-bl-2xl text-xs font-bold uppercase">Grátis</div>
+            <div className="mb-6 bg-blue-50 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+              {bonus.icon}
+            </div>
+            <h4 className="text-xl font-bold text-gray-900 mb-3">{bonus.title}</h4>
+            <p className="text-gray-600 text-sm leading-relaxed mb-6">{bonus.desc}</p>
+            <div className="pt-4 border-t border-gray-100">
+              <span className="text-gray-400 line-through text-sm font-medium">Valor Original: {bonus.price}</span>
+            </div>
           </div>
         ))}
       </div>
-      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-gray-900 to-transparent z-10"></div>
-      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-gray-900 to-transparent z-10"></div>
-    </div>
-  </section>
-);
 
-const BonusSection = () => (
-  <section className="py-20 bg-white">
-    <div className="max-w-4xl mx-auto px-4">
-      <div className="bg-blue-900 text-white rounded-[3rem] p-8 md:p-12 relative overflow-hidden shadow-2xl">
-        <div className="absolute -top-10 -right-10 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-blue-400/10 rounded-full blur-3xl"></div>
-        
-        <h2 className="text-3xl font-extrabold mb-10 text-center italic">Bônus Exclusivos (Incluso no Plano Completo)</h2>
-        
-        <div className="space-y-6">
-          <div className="bg-white/5 border border-white/10 p-6 rounded-2xl flex justify-between items-center group hover:bg-white/10 transition-colors">
-            <div className="flex gap-4">
-               <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center font-bold text-xl">+</div>
-               <div>
-                  <h4 className="font-bold text-lg">1.500 Questões Inéditas e Comentadas</h4>
-                  <p className="text-blue-200 text-sm">Pratique com o nível real da prova.</p>
-               </div>
-            </div>
-            <span className="text-blue-300 line-through font-medium">R$ 29,90</span>
-          </div>
-
-          <div className="bg-white/5 border border-white/10 p-6 rounded-2xl flex justify-between items-center group hover:bg-white/10 transition-colors">
-            <div className="flex gap-4">
-               <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center"><Book className="w-6 h-6" /></div>
-               <div>
-                  <h4 className="font-bold text-lg">Mapas Mentais Organizados</h4>
-                  <p className="text-blue-200 text-sm">Memorize em segundos o que demoraria horas.</p>
-               </div>
-            </div>
-            <span className="text-blue-300 line-through font-medium">R$ 26,90</span>
-          </div>
-
-          <div className="bg-white/5 border border-white/10 p-6 rounded-2xl flex justify-between items-center group hover:bg-white/10 transition-colors">
-            <div className="flex gap-4">
-               <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center"><Clock className="w-6 h-6" /></div>
-               <div>
-                  <h4 className="font-bold text-lg">Organização Completa de Estudos</h4>
-                  <p className="text-blue-200 text-sm">Sua planilha de horários pronta para usar.</p>
-               </div>
-            </div>
-            <span className="text-blue-300 line-through font-medium">R$ 12,90</span>
-          </div>
+      <div className="mt-12 bg-[#0047AB] p-8 rounded-[2.5rem] shadow-2xl shadow-blue-200 text-center relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+          <div className="absolute top-0 left-0 w-40 h-40 bg-white rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute bottom-0 right-0 w-40 h-40 bg-white rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
         </div>
-
-        <div className="mt-10 pt-8 border-t border-white/10 text-center">
-           <p className="text-2xl font-bold uppercase tracking-widest text-blue-400">Totalmente Grátis Hoje</p>
-        </div>
+        <p className="text-blue-100 font-bold uppercase tracking-widest mb-2">Economia Total de R$ 69,70</p>
+        <h3 className="text-2xl md:text-3xl font-black text-white italic">VOCÊ NÃO PAGA NADA POR ESSES BÔNUS HOJE!</h3>
       </div>
     </div>
   </section>
@@ -295,11 +314,19 @@ const Testimonials = () => {
     { name: "Ricardo Almeida", text: "Comprei o completo e os mapas mentais sao show. Facilitou dmais a revisao d direito constitucional.", avatar: "https://i.ibb.co/5XBh90Xf/Whats-App-Image-2026-02-04-at-23-43-59.jpg" }
   ];
 
+  const whatsappScreenshots = [
+    "https://i.ibb.co/Kv1q6rC/35096dc8-4348-4977-be4b-35a69e832b62.png",
+    "https://i.ibb.co/G3N3XvHb/567dfe6f-b705-440a-b591-b75c3ecd7b04.png",
+    "https://i.ibb.co/KxmhMmRz/img-0136-4-Editado.png",
+    "https://i.ibb.co/27DykJPS/img-0136-5-Editado.png"
+  ];
+
   return (
     <section className="py-20 bg-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-3xl font-extrabold text-center mb-16 italic uppercase">O que dizem nossos alunos</h2>
-        <div className="grid md:grid-cols-3 gap-6">
+        
+        <div className="grid md:grid-cols-3 gap-6 mb-16">
           {reviews.map((rev, i) => (
             <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-4">
               <div className="flex items-center gap-3">
@@ -312,6 +339,14 @@ const Testimonials = () => {
                 </div>
               </div>
               <p className="text-gray-600 italic leading-relaxed text-sm">"{rev.text}"</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {whatsappScreenshots.map((src, i) => (
+            <div key={i} className="rounded-2xl overflow-hidden shadow-lg border border-gray-200 transform hover:scale-[1.02] transition-transform">
+              <img src={src} alt={`Feedback WhatsApp ${i}`} className="w-full h-auto" />
             </div>
           ))}
         </div>
@@ -364,7 +399,7 @@ const Pricing = () => {
             </ul>
             <div className="mb-8">
               <p className="text-gray-400 line-through">De R$ 57,00</p>
-              <p className="text-4xl font-extrabold text-gray-900">R$ 28,90</p>
+              <p className="text-4xl font-extrabold text-gray-900">R$ 14,90</p>
               <p className="text-sm text-gray-500">Pagamento Único</p>
             </div>
             <a href={PLANO_BASICO_URL} target="_blank" className="bg-gray-100 hover:bg-gray-200 text-gray-800 py-5 rounded-2xl text-center font-bold transition-all flex items-center justify-center gap-2">
@@ -391,10 +426,10 @@ const Pricing = () => {
               <p className="text-red-500 text-sm font-bold uppercase mb-1">Mega Desconto Ativo</p>
               <p className="text-gray-400 line-through">De R$ 105,70</p>
               <div className="flex items-baseline gap-2">
-                 <p className="text-5xl font-extrabold text-gray-900">R$ 46,90</p>
+                 <p className="text-5xl font-extrabold text-gray-900">R$ 26,90</p>
                  <span className="text-sm font-bold text-[#0047AB]">VITALÍCIO</span>
               </div>
-              <p className="text-sm text-gray-500">Economia real de R$ 58,80</p>
+              <p className="text-sm text-gray-500">Economia real de R$ 78,80</p>
             </div>
             <a href={PLANO_COMPLETO_URL} target="_blank" className="bg-[#0047AB] hover:bg-blue-700 text-white py-5 rounded-2xl text-center font-extrabold text-lg transition-all flex items-center justify-center gap-2 shadow-xl shadow-blue-200 animate-bounce-slow">
               GARANTIR MEU ACESSO AGORA <ChevronRight className="w-6 h-6" />
@@ -476,15 +511,15 @@ const Footer = () => (
 
       <div className="border-t border-white/5 pt-12 space-y-6">
         <p className="text-sm text-gray-500">
-          © 2025 Editora Edital Concursos. Todos os direitos reservados.
+          © 2026 Editora Edital Concursos. Todos os direitos reservados.
         </p>
         <p className="text-xs text-gray-600 max-w-2xl mx-auto">
           Este site não é afiliado ao INSS ou ao Governo Federal. O material vendido é de produção própria, destinado exclusivamente para fins educacionais.
         </p>
         <div className="flex flex-col md:flex-row justify-center gap-8 text-sm text-gray-400 mt-8">
-           <div className="flex items-center gap-2 justify-center">
+           <a href={WHATSAPP_SUPPORT_URL} target="_blank" className="flex items-center gap-2 justify-center hover:text-green-400 transition-colors">
               <Smartphone className="w-4 h-4" /> WhatsApp: 41 98842-0201
-           </div>
+           </a>
            <div className="flex items-center gap-2 justify-center">
               <HelpCircle className="w-4 h-4" /> E-mail: editoraeditalconcursos@gmail.com
            </div>
