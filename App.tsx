@@ -44,26 +44,26 @@ const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => 
 // --- Components ---
 
 const Navbar = () => (
-  <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
+  <nav className="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
     <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
       <div className="flex items-center gap-3">
         <img src={LOGO_EDITORIA} alt="Logo Editora" className="w-10 h-10 object-contain rounded-md" />
-        <span className="font-bold text-gray-800 hidden sm:block">Editora Edital Concursos</span>
+        <span className="font-bold text-slate-100 hidden sm:block">Editora Edital Concursos</span>
       </div>
     </div>
   </nav>
 );
 
 const Headline = () => (
-  <header className="pt-12 pb-12 bg-gradient-to-b from-blue-50 to-white overflow-hidden">
+  <header className="pt-12 pb-12 bg-gradient-to-b from-slate-900 to-slate-950 overflow-hidden">
     <div className="max-w-7xl mx-auto px-4 text-center">
-      <div className="inline-block bg-red-100 text-red-700 px-4 py-1 rounded-full text-xs font-bold mb-6 tracking-wide uppercase">
+      <div className="inline-block bg-red-900/30 text-red-400 px-4 py-1 rounded-full text-xs font-bold mb-6 tracking-wide uppercase border border-red-900/50">
         Últimas Vagas com Valor Promocional
       </div>
-      <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6 max-w-4xl mx-auto">
-        O edital do INSS não avisa quando vai sair. <span className="text-[#0047AB]">Quem se prepara depois, fica para trás.</span>
+      <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6 max-w-4xl mx-auto">
+        O edital do INSS não avisa quando vai sair. <span className="text-blue-500">Quem se prepara depois, fica para trás.</span>
       </h1>
-      <p className="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+      <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
         Não perca tempo com PDFs genéricos. Tenha em mãos o material mais organizado e focado no cargo de Técnico do Seguro Social para sair na frente da concorrência.
       </p>
       
@@ -71,12 +71,12 @@ const Headline = () => (
         <a 
           href="#planos" 
           onClick={(e) => scrollToSection(e, 'planos')}
-          className="group flex items-center gap-2 bg-[#0047AB] hover:bg-blue-700 text-white px-8 py-5 rounded-xl text-xl font-bold shadow-xl shadow-blue-200 transition-all hover:-translate-y-1"
+          className="group flex items-center gap-2 bg-[#0047AB] hover:bg-blue-700 text-white px-8 py-5 rounded-xl text-xl font-bold shadow-xl shadow-blue-900/20 transition-all hover:-translate-y-1"
         >
           QUERO COMEÇAR DO JEITO CERTO
           <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
         </a>
-        <p className="flex items-center gap-2 text-sm text-gray-500 font-medium">
+        <p className="flex items-center gap-2 text-sm text-slate-500 font-medium">
           <ShieldCheck className="w-5 h-5 text-green-500" /> Acesso imediato após o pagamento
         </p>
       </div>
@@ -85,13 +85,13 @@ const Headline = () => (
 );
 
 const PainSection = () => (
-  <section className="py-20 bg-white">
+  <section className="py-20 bg-slate-950">
     <div className="max-w-4xl mx-auto px-4">
       <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
-          Cansado de estudar muito e <span className="text-red-600 underline">sentir que não evolui?</span>
+        <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4">
+          Cansado de estudar muito e <span className="text-red-500 underline">sentir que não evolui?</span>
         </h2>
-        <p className="text-xl text-gray-600">Se você já tentou estudar para concurso e se sentiu perdido no meio de tanto conteúdo, essa página é para você.</p>
+        <p className="text-xl text-slate-400">Se você já tentou estudar para concurso e se sentiu perdido no meio de tanto conteúdo, essa página é para você.</p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8">
@@ -102,14 +102,14 @@ const PainSection = () => (
           "Não faz ideia do que é realmente prioridade para o INSS.",
           "Vive com o medo constante de estar perdendo tempo estudando errado."
         ].map((pain, i) => (
-          <div key={i} className="flex gap-4 items-start p-6 bg-red-50 rounded-2xl border border-red-100">
+          <div key={i} className="flex gap-4 items-start p-6 bg-red-950/20 rounded-2xl border border-red-900/30">
             <AlertTriangle className="w-6 h-6 text-red-500 shrink-0" />
-            <p className="text-gray-800 font-medium">{pain}</p>
+            <p className="text-slate-200 font-medium">{pain}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-16 p-8 bg-[#0047AB] rounded-3xl text-center text-white shadow-xl">
+      <div className="mt-16 p-8 bg-blue-600 rounded-3xl text-center text-white shadow-xl shadow-blue-900/20">
         <h3 className="text-2xl font-bold mb-4">Você não precisa de mais material. Você precisa de MÉTODO.</h3>
         <p className="text-blue-100 text-lg">O problema não é sua inteligência. É a falta de organização do seu estudo.</p>
       </div>
@@ -118,45 +118,45 @@ const PainSection = () => (
 );
 
 const SolutionSection = () => (
-  <section className="py-20 bg-gray-50">
+  <section className="py-20 bg-slate-900">
     <div className="max-w-7xl mx-auto px-4">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 leading-tight">
-            Não vendemos milagres. <br/>Vendemos o <span className="text-[#0047AB]">atalho organizado.</span>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-6 leading-tight">
+            Não vendemos milagres. <br/>Vendemos o <span className="text-blue-500">atalho organizado.</span>
           </h2>
           <div className="space-y-6">
             <div className="flex gap-4">
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center shrink-0">
-                <CheckCircle2 className="w-6 h-6 text-[#0047AB]" />
+              <div className="w-12 h-12 bg-blue-900/30 rounded-full flex items-center justify-center shrink-0">
+                <CheckCircle2 className="w-6 h-6 text-blue-400" />
               </div>
               <div>
-                <h4 className="font-bold text-gray-900 text-lg">100% Focado no Cargo</h4>
-                <p className="text-gray-600">Conteúdo direto ao ponto para Técnico do Seguro Social, sem firulas.</p>
+                <h4 className="font-bold text-slate-100 text-lg">100% Focado no Cargo</h4>
+                <p className="text-slate-400">Conteúdo direto ao ponto para Técnico do Seguro Social, sem firulas.</p>
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center shrink-0">
-                <CheckCircle2 className="w-6 h-6 text-[#0047AB]" />
+              <div className="w-12 h-12 bg-blue-900/30 rounded-full flex items-center justify-center shrink-0">
+                <CheckCircle2 className="w-6 h-6 text-blue-400" />
               </div>
               <div>
-                <h4 className="font-bold text-gray-900 text-lg">Organização por Disciplina</h4>
-                <p className="text-gray-600">Material estruturado para você saber exatamente o que estudar hoje.</p>
+                <h4 className="font-bold text-slate-100 text-lg">Organização por Disciplina</h4>
+                <p className="text-slate-400">Material estruturado para você saber exatamente o que estudar hoje.</p>
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center shrink-0">
-                <CheckCircle2 className="w-6 h-6 text-[#0047AB]" />
+              <div className="w-12 h-12 bg-blue-900/30 rounded-full flex items-center justify-center shrink-0">
+                <CheckCircle2 className="w-6 h-6 text-blue-400" />
               </div>
               <div>
-                <h4 className="font-bold text-gray-900 text-lg">Linguagem Clara</h4>
-                <p className="text-gray-600">Teoria explicada de forma simples, focada em quem tem pouco tempo.</p>
+                <h4 className="font-bold text-slate-100 text-lg">Linguagem Clara</h4>
+                <p className="text-slate-400">Teoria explicada de forma simples, focada em quem tem pouco tempo.</p>
               </div>
             </div>
           </div>
         </div>
         <div className="relative text-center">
-          <div className="absolute -inset-4 bg-[#0047AB]/10 rounded-3xl blur-2xl"></div>
+          <div className="absolute -inset-4 bg-blue-600/10 rounded-3xl blur-2xl"></div>
           <img src={COVER_IMG} alt="Capa da Apostila INSS" className="relative w-full max-w-sm mx-auto rounded-2xl shadow-2xl rotate-2" />
         </div>
       </div>
@@ -165,34 +165,34 @@ const SolutionSection = () => (
 );
 
 const ComparisonTable = () => (
-  <section className="py-20 bg-white">
+  <section className="py-20 bg-slate-950">
     <div className="max-w-5xl mx-auto px-4">
-      <h2 className="text-3xl md:text-4xl font-extrabold text-center text-gray-900 mb-12">
+      <h2 className="text-3xl md:text-4xl font-extrabold text-center text-white mb-12">
         A diferença entre ser <span className="text-red-600">Reprovado</span> e <span className="text-green-600">Aprovado</span>
       </h2>
       <div className="grid md:grid-cols-2 gap-8">
-        <div className="border-2 border-red-100 rounded-3xl p-8 bg-red-50/30">
-          <div className="flex items-center gap-2 mb-6 text-red-600 font-bold text-xl uppercase">
+        <div className="border-2 border-red-900/20 rounded-3xl p-8 bg-red-950/10">
+          <div className="flex items-center gap-2 mb-6 text-red-500 font-bold text-xl uppercase">
             <XCircle className="w-6 h-6" /> Estudar Sem Método
           </div>
           <ul className="space-y-4">
             {["PDFs genéricos e cansativos", "Conteúdo em excesso desnecessário", "Falta de direção clara", "Tempo desperdiçado com besteira", "Sensação constante de atraso"].map((item, i) => (
-              <li key={i} className="flex gap-3 text-gray-500 line-through decoration-gray-400">
+              <li key={i} className="flex gap-3 text-slate-500 line-through decoration-slate-700">
                 {item}
               </li>
             ))}
           </ul>
         </div>
-        <div className="border-2 border-green-200 rounded-3xl p-8 bg-green-50 shadow-xl shadow-green-100 relative overflow-hidden">
-          <div className="absolute top-0 right-0 bg-green-500 text-white px-4 py-1 rounded-bl-xl text-xs font-bold uppercase tracking-wider">
+        <div className="border-2 border-green-900/30 rounded-3xl p-8 bg-green-950/10 shadow-xl shadow-green-900/10 relative overflow-hidden">
+          <div className="absolute top-0 right-0 bg-green-600 text-white px-4 py-1 rounded-bl-xl text-xs font-bold uppercase tracking-wider">
             Recomendado
           </div>
-          <div className="flex items-center gap-2 mb-6 text-green-700 font-bold text-xl uppercase">
+          <div className="flex items-center gap-2 mb-6 text-green-500 font-bold text-xl uppercase">
             <CheckCircle2 className="w-6 h-6" /> Com Nossa Apostila
           </div>
           <ul className="space-y-4">
             {["Conteúdo organizado por matéria", "Foco total no que realmente cai", "Estudo 3x mais rápido e fluido", "Clareza total do caminho até a prova", "Menos ansiedade e mais controle"].map((item, i) => (
-              <li key={i} className="flex gap-3 text-gray-800 font-semibold italic">
+              <li key={i} className="flex gap-3 text-slate-200 font-semibold italic">
                 <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" /> {item}
               </li>
             ))}
@@ -247,13 +247,13 @@ const PreviewSection = () => {
 };
 
 const BonusSection = () => (
-  <section className="py-20 bg-gradient-to-b from-white to-blue-50">
+  <section className="py-20 bg-gradient-to-b from-slate-950 to-slate-900">
     <div className="max-w-5xl mx-auto px-4">
       <div className="text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 italic uppercase tracking-tighter">
-          Bônus <span className="text-[#0047AB]">Exclusivos</span>
+        <h2 className="text-4xl md:text-5xl font-black text-white mb-4 italic uppercase tracking-tighter">
+          Bônus <span className="text-blue-500">Exclusivos</span>
         </h2>
-        <p className="text-gray-600 font-medium">Tudo isso será seu <span className="text-green-600 font-bold">GRATUITAMENTE</span> ao garantir o Plano Completo hoje.</p>
+        <p className="text-slate-400 font-medium">Tudo isso será seu <span className="text-green-500 font-bold">GRATUITAMENTE</span> ao garantir o Plano Completo hoje.</p>
       </div>
 
       <div className="grid md:grid-cols-3 gap-6">
@@ -262,36 +262,36 @@ const BonusSection = () => (
             title: "1.500 Questões Inéditas",
             desc: "Pratique com o nível real da prova e comentários detalhados.",
             price: "R$ 29,90",
-            icon: <HelpCircle className="w-8 h-8 text-blue-600" />
+            icon: <HelpCircle className="w-8 h-8 text-blue-400" />
           },
           {
             title: "Mapas Mentais",
             desc: "Memorize em segundos o que demoraria horas de leitura cansativa.",
             price: "R$ 26,90",
-            icon: <Book className="w-8 h-8 text-blue-600" />
+            icon: <Book className="w-8 h-8 text-blue-400" />
           },
           {
             title: "Planilha de Estudos",
             desc: "Sua organização diária pronta para usar, do zero à aprovação.",
             price: "R$ 12,90",
-            icon: <Clock className="w-8 h-8 text-blue-600" />
+            icon: <Clock className="w-8 h-8 text-blue-400" />
           }
         ].map((bonus, i) => (
-          <div key={i} className="bg-white p-8 rounded-3xl border-2 border-blue-100 shadow-xl shadow-blue-100/50 relative overflow-hidden group hover:-translate-y-2 transition-all">
-            <div className="absolute top-0 right-0 bg-red-500 text-white px-4 py-1 rounded-bl-2xl text-xs font-bold uppercase">Grátis</div>
-            <div className="mb-6 bg-blue-50 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+          <div key={i} className="bg-slate-800 p-8 rounded-3xl border-2 border-slate-700 shadow-xl shadow-blue-900/10 relative overflow-hidden group hover:-translate-y-2 transition-all">
+            <div className="absolute top-0 right-0 bg-red-600 text-white px-4 py-1 rounded-bl-2xl text-xs font-bold uppercase">Grátis</div>
+            <div className="mb-6 bg-blue-900/20 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
               {bonus.icon}
             </div>
-            <h4 className="text-xl font-bold text-gray-900 mb-3">{bonus.title}</h4>
-            <p className="text-gray-600 text-sm leading-relaxed mb-6">{bonus.desc}</p>
-            <div className="pt-4 border-t border-gray-100">
-              <span className="text-gray-400 line-through text-sm font-medium">Valor Original: {bonus.price}</span>
+            <h4 className="text-xl font-bold text-white mb-3">{bonus.title}</h4>
+            <p className="text-slate-400 text-sm leading-relaxed mb-6">{bonus.desc}</p>
+            <div className="pt-4 border-t border-slate-700">
+              <span className="text-slate-500 line-through text-sm font-medium">Valor Original: {bonus.price}</span>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="mt-12 bg-[#0047AB] p-8 rounded-[2.5rem] shadow-2xl shadow-blue-200 text-center relative overflow-hidden">
+      <div className="mt-12 bg-blue-600 p-8 rounded-[2.5rem] shadow-2xl shadow-blue-900/20 text-center relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
           <div className="absolute top-0 left-0 w-40 h-40 bg-white rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
           <div className="absolute bottom-0 right-0 w-40 h-40 bg-white rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
@@ -322,30 +322,30 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-50 overflow-hidden">
+    <section className="py-20 bg-slate-950 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl font-extrabold text-center mb-16 italic uppercase">O que dizem nossos alunos</h2>
+        <h2 className="text-3xl font-extrabold text-center mb-16 italic uppercase text-white">O que dizem nossos alunos</h2>
         
         <div className="grid md:grid-cols-3 gap-6 mb-16">
           {reviews.map((rev, i) => (
-            <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-4">
+            <div key={i} className="bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-800 flex flex-col gap-4">
               <div className="flex items-center gap-3">
                 <img src={rev.avatar} alt={rev.name} className="w-12 h-12 rounded-full object-cover border-2 border-blue-500" />
                 <div>
-                   <p className="font-bold text-gray-900">{rev.name}</p>
+                   <p className="font-bold text-white">{rev.name}</p>
                    <div className="flex gap-1">
                       {[1,2,3,4,5].map(s => <Star key={s} className="w-3 h-3 text-yellow-500 fill-yellow-500" />)}
                    </div>
                 </div>
               </div>
-              <p className="text-gray-600 italic leading-relaxed text-sm">"{rev.text}"</p>
+              <p className="text-slate-400 italic leading-relaxed text-sm">"{rev.text}"</p>
             </div>
           ))}
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {whatsappScreenshots.map((src, i) => (
-            <div key={i} className="rounded-2xl overflow-hidden shadow-lg border border-gray-200 transform hover:scale-[1.02] transition-transform">
+            <div key={i} className="rounded-2xl overflow-hidden shadow-lg border border-slate-800 transform hover:scale-[1.02] transition-transform">
               <img src={src} alt={`Feedback WhatsApp ${i}`} className="w-full h-auto" />
             </div>
           ))}
@@ -371,67 +371,67 @@ const Pricing = () => {
   };
 
   return (
-    <section id="planos" className="py-24 bg-white relative">
+    <section id="planos" className="py-24 bg-slate-900 relative">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-700 px-6 py-2 rounded-full font-bold text-sm mb-6 border border-orange-200">
+          <div className="inline-flex items-center gap-2 bg-orange-950/30 text-orange-400 px-6 py-2 rounded-full font-bold text-sm mb-6 border border-orange-900/30">
              <Clock className="w-5 h-5 animate-pulse" /> A OFERTA EXPIRA EM: {formatTime(timeLeft)}
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 italic">ESCOLHA SEU PLANO</h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            O valor cobrado é irrisório perto do salário de <span className="text-[#0047AB] font-bold">R$ 5.905,79</span> do cargo. 
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6 italic">ESCOLHA SEU PLANO</h2>
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+            O valor cobrado é irrisório perto do salário de <span className="text-blue-400 font-bold">R$ 5.905,79</span> do cargo. 
             É um investimento na sua mudança de vida.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto">
-          <div className="bg-white border-2 border-gray-100 rounded-[2.5rem] p-8 md:p-10 flex flex-col hover:border-blue-100 transition-all">
+          <div className="bg-slate-950 border-2 border-slate-800 rounded-[2.5rem] p-8 md:p-10 flex flex-col hover:border-blue-900 transition-all">
             <div className="mb-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Plano Básico</h3>
-              <p className="text-gray-500 text-sm">Focado 100% no Edital</p>
+              <h3 className="text-2xl font-bold text-white mb-2">Plano Básico</h3>
+              <p className="text-slate-500 text-sm">Focado 100% no Edital</p>
             </div>
             <ul className="space-y-4 mb-10 flex-grow">
-              <li className="flex gap-3 text-gray-700"><CheckCircle2 className="w-5 h-5 text-[#0047AB] shrink-0" /> Apostila Completa INSS</li>
-              <li className="flex gap-3 text-gray-700"><CheckCircle2 className="w-5 h-5 text-[#0047AB] shrink-0" /> Teoria Direta e Objetiva</li>
-              <li className="flex gap-3 text-gray-700"><CheckCircle2 className="w-5 h-5 text-[#0047AB] shrink-0" /> Questões de Fixação</li>
-              <li className="flex gap-3 text-gray-400"><XCircle className="w-5 h-5 shrink-0" /> Bônus de Questões Inéditas</li>
-              <li className="flex gap-3 text-gray-400"><XCircle className="w-5 h-5 shrink-0" /> Mapas Mentais</li>
+              <li className="flex gap-3 text-slate-300"><CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0" /> Apostila Completa INSS</li>
+              <li className="flex gap-3 text-slate-300"><CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0" /> Teoria Direta e Objetiva</li>
+              <li className="flex gap-3 text-slate-300"><CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0" /> Questões de Fixação</li>
+              <li className="flex gap-3 text-slate-500"><XCircle className="w-5 h-5 shrink-0" /> Bônus de Questões Inéditas</li>
+              <li className="flex gap-3 text-slate-500"><XCircle className="w-5 h-5 shrink-0" /> Mapas Mentais</li>
             </ul>
             <div className="mb-8">
-              <p className="text-gray-400 line-through">De R$ 57,00</p>
-              <p className="text-4xl font-extrabold text-gray-900">R$ 14,90</p>
-              <p className="text-sm text-gray-500">Pagamento Único</p>
+              <p className="text-slate-500 line-through">De R$ 57,00</p>
+              <p className="text-4xl font-extrabold text-white">R$ 14,90</p>
+              <p className="text-sm text-slate-500">Pagamento Único</p>
             </div>
-            <a href={PLANO_BASICO_URL} target="_blank" className="bg-gray-100 hover:bg-gray-200 text-gray-800 py-5 rounded-2xl text-center font-bold transition-all flex items-center justify-center gap-2">
+            <a href={PLANO_BASICO_URL} target="_blank" className="bg-slate-800 hover:bg-slate-700 text-slate-100 py-5 rounded-2xl text-center font-bold transition-all flex items-center justify-center gap-2">
               Assinar Plano Básico <ChevronRight className="w-5 h-5" />
             </a>
           </div>
 
-          <div className="bg-blue-50 border-4 border-[#0047AB] rounded-[2.5rem] p-8 md:p-10 flex flex-col relative transform md:scale-105 shadow-2xl z-10">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#0047AB] text-white px-8 py-2 rounded-full font-bold text-sm shadow-lg whitespace-nowrap">
+          <div className="bg-slate-900 border-4 border-blue-600 rounded-[2.5rem] p-8 md:p-10 flex flex-col relative transform md:scale-105 shadow-2xl z-10">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-8 py-2 rounded-full font-bold text-sm shadow-lg whitespace-nowrap">
                MAIS ESCOLHIDO & RECOMENDADO
             </div>
             <div className="mb-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Plano Completo</h3>
-              <p className="text-blue-700 text-sm font-semibold">Tudo o que você precisa para passar</p>
+              <h3 className="text-2xl font-bold text-white mb-2">Plano Completo</h3>
+              <p className="text-blue-400 text-sm font-semibold">Tudo o que você precisa para passar</p>
             </div>
             <ul className="space-y-4 mb-10 flex-grow">
-              <li className="flex gap-3 text-gray-800 font-bold italic"><CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" /> Apostila Completa INSS</li>
-              <li className="flex gap-3 text-gray-800"><CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" /> +1.500 Questões Inéditas</li>
-              <li className="flex gap-3 text-gray-800"><CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" /> Mapas Mentais Organizados</li>
-              <li className="flex gap-3 text-gray-800"><CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" /> Planilha de Estudo Completa</li>
-              <li className="flex gap-3 text-gray-800"><CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" /> Acesso Imediato & Vitalício</li>
+              <li className="flex gap-3 text-white font-bold italic"><CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" /> Apostila Completa INSS</li>
+              <li className="flex gap-3 text-slate-100"><CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" /> +1.500 Questões Inéditas</li>
+              <li className="flex gap-3 text-slate-100"><CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" /> Mapas Mentais Organizados</li>
+              <li className="flex gap-3 text-slate-100"><CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" /> Planilha de Estudo Completa</li>
+              <li className="flex gap-3 text-slate-100"><CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" /> Acesso Imediato & Vitalício</li>
             </ul>
             <div className="mb-8">
               <p className="text-red-500 text-sm font-bold uppercase mb-1">Mega Desconto Ativo</p>
-              <p className="text-gray-400 line-through">De R$ 105,70</p>
+              <p className="text-slate-500 line-through">De R$ 105,70</p>
               <div className="flex items-baseline gap-2">
-                 <p className="text-5xl font-extrabold text-gray-900">R$ 26,90</p>
-                 <span className="text-sm font-bold text-[#0047AB]">VITALÍCIO</span>
+                 <p className="text-5xl font-extrabold text-white">R$ 26,90</p>
+                 <span className="text-sm font-bold text-blue-400">VITALÍCIO</span>
               </div>
-              <p className="text-sm text-gray-500">Economia real de R$ 78,80</p>
+              <p className="text-sm text-slate-500">Economia real de R$ 78,80</p>
             </div>
-            <a href={PLANO_COMPLETO_URL} target="_blank" className="bg-[#0047AB] hover:bg-blue-700 text-white py-5 rounded-2xl text-center font-extrabold text-lg transition-all flex items-center justify-center gap-2 shadow-xl shadow-blue-200 animate-bounce-slow">
+            <a href={PLANO_COMPLETO_URL} target="_blank" className="bg-blue-600 hover:bg-blue-700 text-white py-5 rounded-2xl text-center font-extrabold text-lg transition-all flex items-center justify-center gap-2 shadow-xl shadow-blue-900/20 animate-bounce-slow">
               GARANTIR MEU ACESSO AGORA <ChevronRight className="w-6 h-6" />
             </a>
           </div>
@@ -442,15 +442,15 @@ const Pricing = () => {
 };
 
 const Guarantee = () => (
-  <section className="py-20 bg-gray-50">
+  <section className="py-20 bg-slate-950">
     <div className="max-w-4xl mx-auto px-4 text-center">
-      <div className="bg-white p-12 rounded-[3rem] border-2 border-dashed border-gray-300">
-         <div className="inline-block w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mb-8">
-            <ShieldCheck className="w-12 h-12 text-[#0047AB]" />
+      <div className="bg-slate-900 p-12 rounded-[3rem] border-2 border-dashed border-slate-800">
+         <div className="inline-block w-24 h-24 bg-blue-900/30 rounded-full flex items-center justify-center mb-8">
+            <ShieldCheck className="w-12 h-12 text-blue-400" />
          </div>
-         <h2 className="text-3xl font-extrabold mb-6 italic">GARANTIA DE 7 DIAS</h2>
-         <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-           Você tem 7 dias para acessar o material, baixar a apostila e testar os bônus. Se não fizer sentido para você ou se achar que não é o que esperava, <span className="font-bold text-gray-900">devolvemos 100% do seu dinheiro</span>. Sem perguntas, sem burocracia.
+         <h2 className="text-3xl font-extrabold mb-6 italic text-white">GARANTIA DE 7 DIAS</h2>
+         <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+           Você tem 7 dias para acessar o material, baixar a apostila e testar os bônus. Se não fizer sentido para você ou se achar que não é o que esperava, <span className="font-bold text-white">devolvemos 100% do seu dinheiro</span>. Sem perguntas, sem burocracia.
          </p>
       </div>
     </div>
@@ -468,21 +468,21 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-slate-900">
       <div className="max-w-3xl mx-auto px-4">
-        <h2 className="text-3xl font-extrabold text-center mb-12 italic">Dúvidas Frequentes</h2>
+        <h2 className="text-3xl font-extrabold text-center mb-12 italic text-white">Dúvidas Frequentes</h2>
         <div className="space-y-4">
           {questions.map((item, i) => (
-            <div key={i} className="border border-gray-100 rounded-2xl overflow-hidden">
+            <div key={i} className="border border-slate-800 rounded-2xl overflow-hidden">
               <button 
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors"
+                className="w-full flex justify-between items-center p-6 text-left hover:bg-slate-800 transition-colors"
               >
-                <span className="font-bold text-gray-900">{item.q}</span>
+                <span className="font-bold text-white">{item.q}</span>
                 <ChevronDown className={`w-5 h-5 transition-transform ${openIndex === i ? 'rotate-180' : ''}`} />
               </button>
               {openIndex === i && (
-                <div className="p-6 bg-gray-50 border-t border-gray-100 text-gray-600 leading-relaxed">
+                <div className="p-6 bg-slate-950 border-t border-slate-800 text-slate-400 leading-relaxed">
                    {item.a}
                 </div>
               )}
@@ -530,14 +530,14 @@ const Footer = () => (
 );
 
 const FinalCTA = () => (
-  <section className="py-20 bg-[#0047AB]">
+  <section className="py-20 bg-blue-700">
      <div className="max-w-4xl mx-auto px-4 text-center text-white">
         <h2 className="text-3xl md:text-5xl font-extrabold mb-8 italic">NÃO ESPERE O EDITAL PARA COMEÇAR.</h2>
         <p className="text-xl text-blue-100 mb-10 font-medium">O tempo está correndo. Garanta sua vaga no INSS enquanto a maioria ainda está parada.</p>
         <a 
           href="#planos" 
           onClick={(e) => scrollToSection(e, 'planos')}
-          className="inline-flex items-center gap-3 bg-white text-[#0047AB] px-10 py-6 rounded-2xl text-2xl font-black shadow-2xl hover:bg-blue-50 transition-all uppercase italic tracking-tight"
+          className="inline-flex items-center gap-3 bg-white text-blue-700 px-10 py-6 rounded-2xl text-2xl font-black shadow-2xl hover:bg-blue-50 transition-all uppercase italic tracking-tight"
         >
            COMEÇAR MINHA PREPARAÇÃO AGORA <ChevronRight className="w-8 h-8" />
         </a>
@@ -547,7 +547,7 @@ const FinalCTA = () => (
 
 export default function App() {
   return (
-    <div className="min-h-screen selection:bg-blue-200 selection:text-blue-900">
+    <div className="min-h-screen bg-slate-950 selection:bg-blue-500 selection:text-white">
       <Navbar />
       <Headline />
       <PainSection />
@@ -566,7 +566,7 @@ export default function App() {
          <a 
             href="#planos" 
             onClick={(e) => scrollToSection(e, 'planos')}
-            className="flex items-center justify-center gap-2 w-full bg-[#0047AB] text-white p-5 rounded-2xl font-bold shadow-2xl animate-pulse"
+            className="flex items-center justify-center gap-2 w-full bg-blue-600 text-white p-5 rounded-2xl font-bold shadow-2xl animate-pulse"
           >
             QUERO COMEÇAR AGORA <ArrowRight className="w-5 h-5" />
          </a>
