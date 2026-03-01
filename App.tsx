@@ -13,13 +13,21 @@ import {
   FileText,
   AlertTriangle,
   Smartphone,
-  Book
+  Book,
+  LayoutGrid,
+  Monitor,
+  Tablet,
+  MessageSquare,
+  BarChart,
+  RefreshCw,
+  PlusCircle
 } from 'lucide-react';
 
 // --- Constants & Types ---
 const PLANO_BASICO_URL = "https://pay.wiapy.com/5IlInHQBCa";
 const PLANO_COMPLETO_URL = "https://pay.wiapy.com/d_zoKyeLA7";
 const WHATSAPP_SUPPORT_URL = "https://w.app/editoraeditalconcursos";
+const EDITORA_URL = "https://editoraeditalconcursos.vercel.app";
 
 const COVER_IMG = "https://i.ibb.co/k6Wnfq6g/Capa-de-Livro-Infantil-Ilustrado-Vibrante-PCD-Inclusivo-1.png"; 
 const PAGES_PREVIEW = [
@@ -46,10 +54,12 @@ const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => 
 const Navbar = () => (
   <nav className="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
     <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-      <div className="flex items-center gap-3">
-        <img src={LOGO_EDITORIA} alt="Logo Editora" className="w-10 h-10 object-contain rounded-md" />
-        <span className="font-bold text-slate-100 hidden sm:block">Editora Edital Concursos</span>
-      </div>
+      <a href={EDITORA_URL} target="_blank" className="flex items-center gap-3 group">
+        <div className="w-10 h-10 rounded-full overflow-hidden border border-slate-700 group-hover:border-blue-500 transition-colors">
+          <img src={LOGO_EDITORIA} alt="Logo Editora" className="w-full h-full object-cover" />
+        </div>
+        <span className="font-bold text-slate-100 hidden sm:block group-hover:text-blue-400 transition-colors">Editora Edital Concursos</span>
+      </a>
     </div>
   </nav>
 );
@@ -303,6 +313,94 @@ const BonusSection = () => (
   </section>
 );
 
+const StudyAreaSection = () => (
+  <section className="py-24 bg-slate-900 relative overflow-hidden">
+    <div className="max-w-7xl mx-auto px-4 relative z-10">
+      <div className="text-center mb-16">
+        <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6 italic uppercase">
+          Muito mais que um PDF: <span className="text-blue-500">Sua Área de Estudos</span>
+        </h2>
+        <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
+          Ao adquirir nosso material, você ganha acesso a uma plataforma moderna, organizada e 100% focada na sua produtividade, projetada para que não perca um segundo sequer.
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
+        <div className="space-y-8">
+          <div className="flex gap-6 items-start p-6 bg-slate-800/50 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-colors">
+            <div className="w-14 h-14 bg-blue-900/30 rounded-2xl flex items-center justify-center shrink-0">
+              <LayoutGrid className="w-7 h-7 text-blue-400" />
+            </div>
+            <div>
+              <h4 className="text-xl font-bold text-white mb-2">Organização Inteligente</h4>
+              <p className="text-slate-400">Todo o conteúdo é separado por módulos e tópicos do edital, facilitando a navegação e o foco no que realmente importa.</p>
+            </div>
+          </div>
+
+          <div className="flex gap-6 items-start p-6 bg-slate-800/50 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-colors">
+            <div className="w-14 h-14 bg-blue-900/30 rounded-2xl flex items-center justify-center shrink-0">
+              <div className="flex gap-1">
+                <Smartphone className="w-5 h-5 text-blue-400" />
+                <Monitor className="w-5 h-5 text-blue-400" />
+              </div>
+            </div>
+            <div>
+              <h4 className="text-xl font-bold text-white mb-2">Acesso de Qualquer Lugar</h4>
+              <p className="text-slate-400">Estude pelo celular, tablet ou computador. Sua preparação acompanha seu ritmo, onde quer que você esteja.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative">
+          <div className="absolute -inset-10 bg-blue-600/10 rounded-full blur-3xl"></div>
+          <div className="bg-slate-800 p-4 rounded-[2rem] border border-slate-700 shadow-2xl relative">
+            <img 
+              src="https://i.ibb.co/Kc7T3LDX/13.png" 
+              alt="Plataforma de Estudos" 
+              className="rounded-2xl w-full shadow-lg"
+            />
+            <div className="absolute -bottom-6 -right-6 bg-blue-600 text-white p-6 rounded-3xl shadow-xl hidden md:block">
+              <p className="font-bold text-lg">100% Online</p>
+              <p className="text-blue-100 text-sm">Acesso Imediato</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-4 gap-6">
+        {[
+          {
+            title: "Suporte ao Aluno",
+            desc: "Dúvidas sobre o material ou sobre a plataforma? Nossa equipe está pronta para te ajudar dentro da área exclusiva.",
+            icon: <MessageSquare className="w-6 h-6 text-blue-400" />
+          },
+          {
+            title: "Acompanhamento",
+            desc: "Marque as aulas concluídas e tenha uma visão clara de quanto falta para você bater todo o edital do INSS.",
+            icon: <BarChart className="w-6 h-6 text-blue-400" />
+          },
+          {
+            title: "Atualizações",
+            desc: "Qualquer alteração no edital ou novidade legislativa é atualizada automaticamente na sua área de membros.",
+            icon: <RefreshCw className="w-6 h-6 text-blue-400" />
+          },
+          {
+            title: "Material Extra",
+            desc: "Além das apostilas, tenha acesso a bônus e materiais extras que são liberados periodicamente para os alunos.",
+            icon: <PlusCircle className="w-6 h-6 text-blue-400" />
+          }
+        ].map((item, i) => (
+          <div key={i} className="bg-slate-800/30 p-8 rounded-3xl border border-slate-800 hover:bg-slate-800/50 transition-all">
+            <div className="mb-4">{item.icon}</div>
+            <h5 className="text-lg font-bold text-white mb-3">{item.title}</h5>
+            <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
 const Testimonials = () => {
   const reviews = [
     { name: "Carlos Oliveira", text: "Eu tava mto perdido msm e agr sei exatamente o que estudar pra prova. O material é mto direto e ajuda mto msm.", avatar: "https://i.ibb.co/mCMNKY6d/Whats-App-Image-2026-02-02-at-2.jpg" },
@@ -341,6 +439,10 @@ const Testimonials = () => {
               <p className="text-slate-400 italic leading-relaxed text-sm">"{rev.text}"</p>
             </div>
           ))}
+        </div>
+
+        <div className="text-center mb-8">
+          <h3 className="text-xl md:text-2xl font-bold text-blue-400 italic uppercase">Nossos alunos que imprimiram o material</h3>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -498,10 +600,12 @@ const Footer = () => (
   <footer className="bg-[#0b0e14] text-white py-16">
     <div className="max-w-7xl mx-auto px-4 text-center">
       <div className="flex flex-col items-center gap-6 mb-12">
-        <div className="flex items-center gap-3 text-2xl font-bold">
-           <img src={LOGO_EDITORIA} alt="Logo Editora" className="w-12 h-12 object-contain rounded-lg" />
-           Editora Edital Concursos
-        </div>
+        <a href={EDITORA_URL} target="_blank" className="flex items-center gap-3 text-2xl font-bold group">
+           <div className="w-12 h-12 rounded-full overflow-hidden border border-white/10 group-hover:border-blue-500 transition-colors">
+              <img src={LOGO_EDITORIA} alt="Logo Editora" className="w-full h-full object-cover" />
+           </div>
+           <span className="group-hover:text-blue-400 transition-colors">Editora Edital Concursos</span>
+        </a>
         <div className="flex gap-8 text-sm text-gray-400 font-medium">
            <a href="#" className="hover:text-white transition-colors">Termos de Uso</a>
            <a href="#" className="hover:text-white transition-colors">Política de Privacidade</a>
@@ -555,6 +659,7 @@ export default function App() {
       <ComparisonTable />
       <PreviewSection />
       <BonusSection />
+      <StudyAreaSection />
       <Testimonials />
       <Pricing />
       <Guarantee />
