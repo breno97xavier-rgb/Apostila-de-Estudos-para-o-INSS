@@ -26,7 +26,7 @@ import {
 // --- Constants & Types ---
 const PLANO_BASICO_URL = "https://pay.wiapy.com/5IlInHQBCa";
 const PLANO_COMPLETO_URL = "https://pay.wiapy.com/d_zoKyeLA7";
-const WHATSAPP_SUPPORT_URL = "https://w.app/editoraeditalconcursos";
+const WHATSAPP_SUPPORT_URL = "https://wa.me/5541988420201";
 const EDITORA_URL = "https://editoraeditalconcursos.vercel.app";
 
 const COVER_IMG = "https://i.ibb.co/k6Wnfq6g/Capa-de-Livro-Infantil-Ilustrado-Vibrante-PCD-Inclusivo-1.png"; 
