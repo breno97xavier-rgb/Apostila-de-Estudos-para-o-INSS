@@ -528,10 +528,10 @@ const Pricing = () => {
               <p className="text-red-500 text-sm font-bold uppercase mb-1">Mega Desconto Ativo</p>
               <p className="text-slate-500 line-through">De R$ 105,70</p>
               <div className="flex items-baseline gap-2">
-                 <p className="text-5xl font-extrabold text-white">R$ 26,90</p>
+                 <p className="text-5xl font-extrabold text-white">R$ 28,90</p>
                  <span className="text-sm font-bold text-blue-400">VITALÍCIO</span>
               </div>
-              <p className="text-sm text-slate-500">Economia real de R$ 78,80</p>
+              <p className="text-sm text-slate-500">Economia real de R$ 76,80</p>
             </div>
             <a href={PLANO_COMPLETO_URL} target="_blank" className="bg-blue-600 hover:bg-blue-700 text-white py-5 rounded-2xl text-center font-extrabold text-lg transition-all flex items-center justify-center gap-2 shadow-xl shadow-blue-900/20 animate-bounce-slow">
               GARANTIR MEU ACESSO AGORA <ChevronRight className="w-6 h-6" />
