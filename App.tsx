@@ -472,6 +472,17 @@ const Pricing = () => {
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
+  const features = [
+    "Material Teórico Completo",
+    "Questões Gabaritadas Inéditas",
+    "Mapas Mentais Esquematizados Exclusivos",
+    "Plataforma de Estudos Personalizada",
+    "Atualizações Prioritárias Periódicas",
+    "Suporte Vip 24h",
+    "Organização de Estudos",
+    "Material organizado rigorosamente por edital"
+  ];
+
   return (
     <section id="planos" className="py-24 bg-slate-900 relative">
       <div className="max-w-6xl mx-auto px-4">
@@ -487,55 +498,64 @@ const Pricing = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto">
-          <div className="bg-slate-950 border-2 border-slate-800 rounded-[2.5rem] p-8 md:p-10 flex flex-col hover:border-blue-900 transition-all">
+          {/* Plano Simples - Less Attractive */}
+          <div className="bg-slate-950/50 border border-slate-800 rounded-[2.5rem] p-8 md:p-10 flex flex-col opacity-75 grayscale-[0.5] hover:grayscale-0 transition-all">
             <div className="mb-8">
-              <h3 className="text-2xl font-bold text-white mb-2">Plano Básico</h3>
-              <p className="text-slate-500 text-sm">Focado 100% no Edital</p>
+              <h3 className="text-2xl font-bold text-slate-400 mb-2">Plano Simples</h3>
+              <p className="text-slate-600 text-sm italic">Acesso limitado ao conteúdo</p>
             </div>
             <ul className="space-y-4 mb-10 flex-grow">
-              <li className="flex gap-3 text-slate-300"><CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0" /> Apostila Completa INSS</li>
-              <li className="flex gap-3 text-slate-300"><CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0" /> Teoria Direta e Objetiva</li>
-              <li className="flex gap-3 text-slate-300"><CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0" /> Questões de Fixação</li>
-              <li className="flex gap-3 text-slate-500"><XCircle className="w-5 h-5 shrink-0" /> Bônus de Questões Inéditas</li>
-              <li className="flex gap-3 text-slate-500"><XCircle className="w-5 h-5 shrink-0" /> Mapas Mentais</li>
+              {features.map((feature, index) => (
+                <li key={index} className={`flex gap-3 text-sm ${index === 0 ? 'text-slate-300' : 'text-slate-600'}`}>
+                  {index === 0 ? (
+                    <CheckCircle2 className="w-5 h-5 text-green-600 shrink-0" />
+                  ) : (
+                    <XCircle className="w-5 h-5 text-red-900/50 shrink-0" />
+                  )}
+                  {feature}
+                </li>
+              ))}
             </ul>
             <div className="mb-8">
-              <p className="text-slate-500 line-through">De R$ 57,00</p>
-              <p className="text-4xl font-extrabold text-white">R$ 14,90</p>
-              <p className="text-sm text-slate-500">Pagamento Único</p>
+              <p className="text-slate-600 line-through text-sm">De R$ 57,00</p>
+              <p className="text-4xl font-extrabold text-slate-400">R$ 14,90</p>
+              <p className="text-xs text-slate-600">Pagamento Único</p>
             </div>
-            <a href={PLANO_BASICO_URL} target="_blank" className="bg-slate-800 hover:bg-slate-700 text-slate-100 py-5 rounded-2xl text-center font-bold transition-all flex items-center justify-center gap-2">
-              Assinar Plano Básico <ChevronRight className="w-5 h-5" />
+            <a href={PLANO_BASICO_URL} target="_blank" className="bg-slate-800 text-slate-500 py-4 rounded-2xl text-center font-bold transition-all flex items-center justify-center gap-2 cursor-not-allowed">
+              Plano Limitado <ChevronRight className="w-5 h-5" />
             </a>
           </div>
 
-          <div className="bg-slate-900 border-4 border-blue-600 rounded-[2.5rem] p-8 md:p-10 flex flex-col relative transform md:scale-105 shadow-2xl z-10">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-8 py-2 rounded-full font-bold text-sm shadow-lg whitespace-nowrap">
-               MAIS ESCOLHIDO & RECOMENDADO
+          {/* Plano Completo - More Attractive */}
+          <div className="bg-slate-900 border-4 border-blue-600 rounded-[2.5rem] p-8 md:p-10 flex flex-col relative transform md:scale-105 shadow-[0_0_50px_-12px_rgba(37,99,235,0.5)] z-10">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-2 rounded-full font-black text-sm shadow-xl whitespace-nowrap animate-pulse">
+               OFERTA COMPLETA: MAIS ESCOLHIDO
             </div>
             <div className="mb-8">
-              <h3 className="text-2xl font-bold text-white mb-2">Plano Completo</h3>
-              <p className="text-blue-400 text-sm font-semibold">Tudo o que você precisa para passar</p>
+              <h3 className="text-3xl font-black text-white mb-2 italic tracking-tight">PLANO COMPLETO</h3>
+              <p className="text-blue-400 text-sm font-bold uppercase tracking-widest">Experiência de Aprovação Total</p>
             </div>
             <ul className="space-y-4 mb-10 flex-grow">
-              <li className="flex gap-3 text-white font-bold italic"><CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" /> Apostila Completa INSS</li>
-              <li className="flex gap-3 text-slate-100"><CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" /> +1.500 Questões Inéditas</li>
-              <li className="flex gap-3 text-slate-100"><CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" /> Mapas Mentais Organizados</li>
-              <li className="flex gap-3 text-slate-100"><CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" /> Planilha de Estudo Completa</li>
-              <li className="flex gap-3 text-slate-100"><CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" /> Acesso Imediato & Vitalício</li>
+              {features.map((feature, index) => (
+                <li key={index} className="flex gap-3 text-white font-bold italic text-sm group">
+                  <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0 group-hover:scale-110 transition-transform" />
+                  {feature}
+                </li>
+              ))}
             </ul>
-            <div className="mb-8">
-              <p className="text-red-500 text-sm font-bold uppercase mb-1">Mega Desconto Ativo</p>
-              <p className="text-slate-500 line-through">De R$ 105,70</p>
+            <div className="mb-8 bg-blue-950/30 p-6 rounded-3xl border border-blue-900/30">
+              <p className="text-red-500 text-xs font-black uppercase mb-1 tracking-tighter">Mega Desconto Ativo - Aproveite agora</p>
+              <p className="text-slate-500 line-through text-sm">De R$ 105,70</p>
               <div className="flex items-baseline gap-2">
-                 <p className="text-5xl font-extrabold text-white">R$ 28,90</p>
-                 <span className="text-sm font-bold text-blue-400">VITALÍCIO</span>
+                 <p className="text-6xl font-black text-white tracking-tighter">R$ 28,90</p>
+                 <span className="text-sm font-black text-blue-400 uppercase">Vitalício</span>
               </div>
-              <p className="text-sm text-slate-500">Economia real de R$ 76,80</p>
+              <p className="text-xs text-slate-400 mt-1">Economia real de R$ 76,80</p>
             </div>
-            <a href={PLANO_COMPLETO_URL} target="_blank" className="bg-blue-600 hover:bg-blue-700 text-white py-5 rounded-2xl text-center font-extrabold text-lg transition-all flex items-center justify-center gap-2 shadow-xl shadow-blue-900/20 animate-bounce-slow">
-              GARANTIR MEU ACESSO AGORA <ChevronRight className="w-6 h-6" />
+            <a href={PLANO_COMPLETO_URL} target="_blank" className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white py-6 rounded-2xl text-center font-black text-xl transition-all flex items-center justify-center gap-2 shadow-2xl shadow-blue-900/40 hover:-translate-y-1">
+              QUERO O ACESSO COMPLETO AGORA <ChevronRight className="w-7 h-7" />
             </a>
+            <p className="text-center text-[10px] text-slate-500 mt-4 uppercase font-bold tracking-widest">Compra 100% Segura & Acesso Imediato</p>
           </div>
         </div>
       </div>
@@ -544,16 +564,45 @@ const Pricing = () => {
 };
 
 const Guarantee = () => (
-  <section className="py-20 bg-slate-950">
-    <div className="max-w-4xl mx-auto px-4 text-center">
-      <div className="bg-slate-900 p-12 rounded-[3rem] border-2 border-dashed border-slate-800">
-         <div className="inline-block w-24 h-24 bg-blue-900/30 rounded-full flex items-center justify-center mb-8">
-            <ShieldCheck className="w-12 h-12 text-blue-400" />
+  <section className="py-24 bg-slate-950 relative overflow-hidden">
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-slate-800 to-transparent"></div>
+    <div className="max-w-5xl mx-auto px-4 relative z-10">
+      <div className="bg-gradient-to-br from-slate-900 to-slate-950 p-8 md:p-16 rounded-[4rem] border border-slate-800 shadow-2xl relative overflow-hidden group">
+         {/* Decorative elements */}
+         <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-600/5 rounded-full blur-3xl group-hover:bg-blue-600/10 transition-colors"></div>
+         <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-600/5 rounded-full blur-3xl group-hover:bg-blue-600/10 transition-colors"></div>
+         
+         <div className="flex flex-col md:flex-row items-center gap-12 relative">
+            <div className="shrink-0 relative">
+               <div className="absolute inset-0 bg-blue-500/20 blur-2xl rounded-full animate-pulse"></div>
+               <div className="relative w-32 h-32 md:w-48 md:h-48 bg-slate-800 rounded-full border-4 border-blue-600/30 flex items-center justify-center shadow-2xl">
+                  <ShieldCheck className="w-16 h-16 md:w-24 md:h-24 text-blue-500" />
+               </div>
+               <div className="absolute -bottom-2 -right-2 bg-blue-600 text-white w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center font-black text-xl md:text-2xl shadow-lg border-4 border-slate-900">
+                  7
+               </div>
+            </div>
+            
+            <div className="text-center md:text-left">
+               <h2 className="text-3xl md:text-5xl font-black mb-6 italic text-white tracking-tight uppercase">
+                  Risco Zero: <span className="text-blue-500">Garantia Blindada</span>
+               </h2>
+               <p className="text-lg md:text-xl text-slate-400 leading-relaxed mb-8">
+                 Você tem 7 dias para acessar o material, baixar a apostila e testar os bônus. Se por qualquer motivo você achar que não é para você, <span className="font-black text-white underline decoration-blue-500 underline-offset-4">devolvemos 100% do seu investimento</span>. 
+               </p>
+               <div className="flex flex-wrap justify-center md:justify-start gap-4">
+                  <div className="flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-full border border-slate-700 text-xs font-bold text-slate-300 uppercase tracking-wider">
+                     <CheckCircle2 className="w-4 h-4 text-green-500" /> Sem Perguntas
+                  </div>
+                  <div className="flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-full border border-slate-700 text-xs font-bold text-slate-300 uppercase tracking-wider">
+                     <CheckCircle2 className="w-4 h-4 text-green-500" /> Sem Burocracia
+                  </div>
+                  <div className="flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-full border border-slate-700 text-xs font-bold text-slate-300 uppercase tracking-wider">
+                     <CheckCircle2 className="w-4 h-4 text-green-500" /> Reembolso Imediato
+                  </div>
+               </div>
+            </div>
          </div>
-         <h2 className="text-3xl font-extrabold mb-6 italic text-white">GARANTIA DE 7 DIAS</h2>
-         <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
-           Você tem 7 dias para acessar o material, baixar a apostila e testar os bônus. Se não fizer sentido para você ou se achar que não é o que esperava, <span className="font-bold text-white">devolvemos 100% do seu dinheiro</span>. Sem perguntas, sem burocracia.
-         </p>
       </div>
     </div>
   </section>
@@ -652,7 +701,6 @@ const FinalCTA = () => (
 export default function App() {
   return (
     <div className="min-h-screen bg-slate-950 selection:bg-blue-500 selection:text-white">
-      <Navbar />
       <Headline />
       <PainSection />
       <SolutionSection />
@@ -661,8 +709,8 @@ export default function App() {
       <BonusSection />
       <StudyAreaSection />
       <Testimonials />
-      <Pricing />
       <Guarantee />
+      <Pricing />
       <FAQ />
       <FinalCTA />
       <Footer />
