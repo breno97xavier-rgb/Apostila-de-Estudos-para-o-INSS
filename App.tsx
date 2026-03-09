@@ -26,6 +26,7 @@ import {
 // --- Constants & Types ---
 const PLANO_BASICO_URL = "https://pay.wiapy.com/5IlInHQBCa";
 const PLANO_COMPLETO_URL = "https://pay.wiapy.com/d_zoKyeLA7";
+const COMBO_APROVACAO_URL = "https://pay.wiapy.com/QU1oKPzDrp";
 const WHATSAPP_SUPPORT_URL = "https://wa.me/5541988420201";
 const EDITORA_URL = "https://editoraeditalconcursos.vercel.app";
 
@@ -472,20 +473,9 @@ const Pricing = () => {
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
-  const features = [
-    "Material Teórico Completo",
-    "Questões Gabaritadas Inéditas",
-    "Mapas Mentais Esquematizados Exclusivos",
-    "Plataforma de Estudos Personalizada",
-    "Atualizações Prioritárias Periódicas",
-    "Suporte Vip 24h",
-    "Organização de Estudos",
-    "Material organizado rigorosamente por edital"
-  ];
-
   return (
     <section id="planos" className="py-24 bg-slate-900 relative">
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-orange-950/30 text-orange-400 px-6 py-2 rounded-full font-bold text-sm mb-6 border border-orange-900/30">
              <Clock className="w-5 h-5 animate-pulse" /> A OFERTA EXPIRA EM: {formatTime(timeLeft)}
@@ -497,65 +487,100 @@ const Pricing = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto">
-          {/* Plano Simples - Less Attractive */}
-          <div className="bg-slate-950/50 border border-slate-800 rounded-[2.5rem] p-8 md:p-10 flex flex-col opacity-75 grayscale-[0.5] hover:grayscale-0 transition-all">
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-slate-400 mb-2">Plano Simples</h3>
-              <p className="text-slate-600 text-sm italic">Acesso limitado ao conteúdo</p>
+        <div className="grid md:grid-cols-3 gap-6 items-stretch">
+          {/* Plano Simples */}
+          <div className="bg-slate-950 border border-slate-800 rounded-[2.5rem] p-6 flex flex-col hover:border-slate-700 transition-all">
+            <div className="mb-6">
+              <h3 className="text-xl font-bold text-slate-300 mb-1">Plano Simples</h3>
+              <p className="text-slate-500 text-xs">Ideal para quem quer o básico</p>
             </div>
-            <ul className="space-y-4 mb-10 flex-grow">
-              {features.map((feature, index) => (
-                <li key={index} className={`flex gap-3 text-sm ${index === 0 ? 'text-slate-300' : 'text-slate-600'}`}>
-                  {index === 0 ? (
-                    <CheckCircle2 className="w-5 h-5 text-green-600 shrink-0" />
-                  ) : (
-                    <XCircle className="w-5 h-5 text-red-900/50 shrink-0" />
-                  )}
-                  {feature}
-                </li>
-              ))}
+            <ul className="space-y-3 mb-8 flex-grow">
+              <li className="flex gap-2 text-sm text-slate-400">
+                <CheckCircle2 className="w-4 h-4 text-green-600 shrink-0" /> Conteúdo básico em PDF
+              </li>
             </ul>
-            <div className="mb-8">
-              <p className="text-slate-600 line-through text-sm">De R$ 57,00</p>
-              <p className="text-4xl font-extrabold text-slate-400">R$ 14,90</p>
-              <p className="text-xs text-slate-600">Pagamento Único</p>
+            <div className="mb-6">
+              <p className="text-slate-500 line-through text-xs">De R$ 57,00</p>
+              <p className="text-3xl font-extrabold text-white">R$ 14,90</p>
+              <p className="text-[10px] text-slate-500 uppercase font-bold">Pagamento Único</p>
             </div>
-            <a href={PLANO_BASICO_URL} target="_blank" className="bg-slate-800 text-slate-500 py-4 rounded-2xl text-center font-bold transition-all flex items-center justify-center gap-2 cursor-not-allowed">
-              Plano Limitado <ChevronRight className="w-5 h-5" />
+            <a href={PLANO_BASICO_URL} target="_blank" className="bg-slate-800 hover:bg-slate-700 text-slate-300 py-4 rounded-xl text-center font-bold text-sm transition-all flex items-center justify-center gap-2">
+              Escolher Plano Simples <ChevronRight className="w-4 h-4" />
             </a>
           </div>
 
-          {/* Plano Completo - More Attractive */}
-          <div className="bg-slate-900 border-4 border-blue-600 rounded-[2.5rem] p-8 md:p-10 flex flex-col relative transform md:scale-105 shadow-[0_0_50px_-12px_rgba(37,99,235,0.5)] z-10">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-2 rounded-full font-black text-sm shadow-xl whitespace-nowrap animate-pulse">
-               OFERTA COMPLETA: MAIS ESCOLHIDO
+          {/* Plano Essencial */}
+          <div className="bg-slate-900 border-2 border-blue-900/50 rounded-[2.5rem] p-6 flex flex-col relative shadow-xl shadow-blue-900/5 hover:border-blue-500 transition-all">
+            <div className="mb-6">
+              <h3 className="text-xl font-bold text-white mb-1">Plano Essencial</h3>
+              <p className="text-blue-400 text-xs font-semibold">O essencial para sua aprovação</p>
             </div>
-            <div className="mb-8">
-              <h3 className="text-3xl font-black text-white mb-2 italic tracking-tight">PLANO COMPLETO</h3>
-              <p className="text-blue-400 text-sm font-bold uppercase tracking-widest">Experiência de Aprovação Total</p>
-            </div>
-            <ul className="space-y-4 mb-10 flex-grow">
-              {features.map((feature, index) => (
-                <li key={index} className="flex gap-3 text-white font-bold italic text-sm group">
-                  <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0 group-hover:scale-110 transition-transform" />
-                  {feature}
+            <ul className="space-y-3 mb-8 flex-grow">
+              {[
+                "Material Teórico Completo",
+                "Questões Gabaritadas Inéditas",
+                "Mapas Mentais Esquematizados Exclusivos",
+                "Plataforma de Estudos Personalizada"
+              ].map((f, i) => (
+                <li key={i} className="flex gap-2 text-sm text-slate-200">
+                  <CheckCircle2 className="w-4 h-4 text-blue-500 shrink-0" /> {f}
                 </li>
               ))}
             </ul>
-            <div className="mb-8 bg-blue-950/30 p-6 rounded-3xl border border-blue-900/30">
-              <p className="text-red-500 text-xs font-black uppercase mb-1 tracking-tighter">Mega Desconto Ativo - Aproveite agora</p>
-              <p className="text-slate-500 line-through text-sm">De R$ 105,70</p>
+            <div className="mb-6">
+              <p className="text-slate-500 line-through text-xs">De R$ 105,70</p>
               <div className="flex items-baseline gap-2">
-                 <p className="text-6xl font-black text-white tracking-tighter">R$ 28,90</p>
-                 <span className="text-sm font-black text-blue-400 uppercase">Vitalício</span>
+                 <p className="text-3xl font-extrabold text-white">R$ 28,90</p>
+                 <span className="text-[10px] font-bold text-blue-400 uppercase">Vitalício</span>
               </div>
-              <p className="text-xs text-slate-400 mt-1">Economia real de R$ 76,80</p>
+              <p className="text-[10px] text-slate-500 uppercase font-bold mt-1">Economia de R$ 76,80</p>
             </div>
-            <a href={PLANO_COMPLETO_URL} target="_blank" className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white py-6 rounded-2xl text-center font-black text-xl transition-all flex items-center justify-center gap-2 shadow-2xl shadow-blue-900/40 hover:-translate-y-1">
-              QUERO O ACESSO COMPLETO AGORA <ChevronRight className="w-7 h-7" />
+            <a href={PLANO_COMPLETO_URL} target="_blank" className="bg-blue-900/40 hover:bg-blue-800 text-white py-4 rounded-xl text-center font-bold text-sm transition-all flex items-center justify-center gap-2 border border-blue-700">
+              Escolher Plano Essencial <ChevronRight className="w-4 h-4" />
             </a>
-            <p className="text-center text-[10px] text-slate-500 mt-4 uppercase font-bold tracking-widest">Compra 100% Segura & Acesso Imediato</p>
+          </div>
+
+          {/* Combo Aprovação */}
+          <div className="bg-slate-900 border-4 border-blue-600 rounded-[2.5rem] p-6 flex flex-col relative transform md:scale-105 shadow-[0_0_50px_-12px_rgba(37,99,235,0.4)] z-10">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-6 py-1.5 rounded-full font-black text-[10px] shadow-xl whitespace-nowrap animate-pulse uppercase tracking-wider">
+               O MAIS VENDIDO
+            </div>
+            <div className="mb-6">
+              <h3 className="text-2xl font-black text-white mb-1 italic tracking-tight">COMBO APROVAÇÃO</h3>
+              <p className="text-blue-400 text-[10px] font-bold uppercase tracking-widest">A experiência completa e definitiva</p>
+            </div>
+            <ul className="space-y-2.5 mb-8 flex-grow">
+              {[
+                "Material Teórico Completo",
+                "Questões Gabaritadas Inéditas",
+                "Mapas Mentais Esquematizados Exclusivos",
+                "Plataforma de Estudos Personalizada",
+                "Simulados Esquematizados",
+                "Revisão Esquematizada Completa",
+                "Redação Discursiva para Concursos",
+                "Como Estudar com PDFs",
+                "Controle Emocional - Disciplina de Ferro",
+                "Atualizações Prioritárias Periódicas",
+                "Suporte Vip 24h"
+              ].map((f, i) => (
+                <li key={i} className="flex gap-2 text-white font-bold italic text-[11px] group">
+                  <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 group-hover:scale-110 transition-transform" />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <div className="mb-6 bg-blue-950/30 p-5 rounded-2xl border border-blue-900/30">
+              <p className="text-red-500 text-[10px] font-black uppercase mb-1 tracking-tighter">Oferta por Tempo Limitado</p>
+              <p className="text-slate-500 line-through text-xs">De R$ 197,00</p>
+              <div className="flex items-baseline gap-2">
+                 <p className="text-4xl font-black text-white tracking-tighter">R$ 48,90</p>
+                 <span className="text-[10px] font-black text-blue-400 uppercase">Vitalício</span>
+              </div>
+            </div>
+            <a href={COMBO_APROVACAO_URL} target="_blank" className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white py-5 rounded-xl text-center font-black text-lg transition-all flex items-center justify-center gap-2 shadow-2xl shadow-blue-900/40 hover:-translate-y-1">
+              GARANTIR COMBO AGORA <ChevronRight className="w-6 h-6" />
+            </a>
+            <p className="text-center text-[9px] text-slate-500 mt-3 uppercase font-bold tracking-widest">Acesso Imediato em PDF</p>
           </div>
         </div>
       </div>
