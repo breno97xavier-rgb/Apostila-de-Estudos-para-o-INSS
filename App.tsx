@@ -1,11 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
+import confetti from 'canvas-confetti';
 import { 
   CheckCircle2, 
   XCircle, 
   Clock, 
   ShieldCheck, 
   ChevronRight, 
+  ChevronLeft,
   Star, 
   ChevronDown, 
   ArrowRight,
@@ -24,9 +26,11 @@ import {
 } from 'lucide-react';
 
 // --- Constants & Types ---
-const PLANO_BASICO_URL = "https://pay.wiapy.com/5IlInHQBCa";
-const PLANO_COMPLETO_URL = "https://pay.wiapy.com/d_zoKyeLA7";
-const COMBO_APROVACAO_URL = "https://pay.wiapy.com/QU1oKPzDrp";
+const PLANO_BASICO_URL = "https://pay.cakto.com.br/33ftzrf_741304";
+const PLANO_COMPLETO_URL = "https://pay.cakto.com.br/3awzdjr_741300";
+const COMBO_APROVACAO_URL = "https://pay.cakto.com.br/9emxzxw";
+const UPSELL_PLANO_ESSENCIAL_URL = "https://pay.cakto.com.br/r5nx6k2";
+const UPSELL_COMBO_APROVACAO_URL = "https://pay.cakto.com.br/39jre8r";
 const WHATSAPP_SUPPORT_URL = "https://wa.me/5541988420201";
 const EDITORA_URL = "https://editoraeditalconcursos.vercel.app";
 
@@ -215,42 +219,87 @@ const ComparisonTable = () => (
 );
 
 const PreviewSection = () => {
-  const [isPaused, setIsPaused] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % PAGES_PREVIEW.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + PAGES_PREVIEW.length) % PAGES_PREVIEW.length);
+  };
 
   return (
-    <section id="preview" className="py-20 bg-gray-900 text-white overflow-hidden">
+    <section id="preview" className="py-20 bg-slate-950 text-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 mb-12">
         <div className="flex flex-col md:flex-row justify-between items-end gap-6">
           <div>
-            <h2 className="text-3xl font-extrabold mb-4 italic">O que você vai receber</h2>
-            <p className="text-gray-400 max-w-xl">
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-4 italic uppercase tracking-tight">
+              O que você vai <span className="text-blue-500">receber</span>
+            </h2>
+            <p className="text-slate-400 max-w-xl">
               Material 100% alinhado ao último edital: Português, RLM, Informática, Ética, Direito Constitucional, Direito Administrativo e Seguridade Social.
             </p>
           </div>
-          <div className="bg-white/10 px-6 py-3 rounded-full border border-white/20 font-bold flex items-center gap-2">
+          <div className="bg-blue-900/20 px-6 py-3 rounded-full border border-blue-800/50 font-bold flex items-center gap-2 text-blue-400">
              <FileText className="w-5 h-5" /> PDF com Acesso Vitalício
           </div>
         </div>
       </div>
 
-      <div className="relative">
-        <div 
-          className={`animate-marquee gap-8 py-4 ${isPaused ? '[animation-play-state:paused]' : ''}`}
-          onClick={() => setIsPaused(!isPaused)}
-        >
-          {[...PAGES_PREVIEW, ...PAGES_PREVIEW].map((src, i) => (
-            <div key={i} className="w-64 md:w-80 h-auto bg-white rounded-lg shadow-2xl transform hover:scale-105 transition-transform overflow-hidden cursor-pointer">
-               <img src={src} alt={`Preview ${i}`} className="w-full h-auto object-cover pointer-events-none" />
+      <div className="max-w-4xl mx-auto px-4">
+        <div className="relative group">
+          {/* Main Image Container */}
+          <div className="relative aspect-[3/4] md:aspect-[4/3] max-w-2xl mx-auto bg-slate-900 rounded-[2rem] border-4 border-slate-800 shadow-2xl overflow-hidden shadow-blue-900/20">
+            <div className="absolute inset-0 flex items-center justify-center p-4 md:p-8">
+              <img 
+                src={PAGES_PREVIEW[currentIndex]} 
+                alt={`Página ${currentIndex + 1}`} 
+                className="max-w-full max-h-full object-contain rounded-lg shadow-lg"
+              />
             </div>
-          ))}
+            
+            {/* Navigation Overlays (Mobile Friendly) */}
+            <div className="absolute inset-y-0 left-0 w-1/4 cursor-pointer" onClick={prevSlide}></div>
+            <div className="absolute inset-y-0 right-0 w-1/4 cursor-pointer" onClick={nextSlide}></div>
+          </div>
+
+          {/* Desktop Navigation Buttons */}
+          <button 
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-slate-800 hover:bg-blue-600 text-white p-4 rounded-full shadow-xl transition-all border border-slate-700 z-20"
+            aria-label="Página Anterior"
+          >
+            <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
+          </button>
+          
+          <button 
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 bg-slate-800 hover:bg-blue-600 text-white p-4 rounded-full shadow-xl transition-all border border-slate-700 z-20"
+            aria-label="Próxima Página"
+          >
+            <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+          </button>
         </div>
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-gray-900 to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-gray-900 to-transparent z-10 pointer-events-none"></div>
-        
-        <div className="text-center mt-8">
-          <p className="text-gray-500 text-sm flex items-center justify-center gap-2">
-            <HelpCircle className="w-4 h-4" /> Clique em uma página para pausar e ler
+
+        {/* Indicators & Info */}
+        <div className="mt-12 text-center space-y-4">
+          <div className="flex justify-center gap-2">
+            {PAGES_PREVIEW.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentIndex(i)}
+                className={`h-1.5 rounded-full transition-all ${currentIndex === i ? 'w-8 bg-blue-500' : 'w-2 bg-slate-700 hover:bg-slate-600'}`}
+              />
+            ))}
+          </div>
+          <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">
+            Página {currentIndex + 1} de {PAGES_PREVIEW.length}
           </p>
+          <div className="pt-4 flex items-center justify-center gap-2 text-slate-400 text-sm">
+            <HelpCircle className="w-4 h-4" />
+            <span>Use as setas para navegar pelo conteúdo interno</span>
+          </div>
         </div>
       </div>
     </section>
@@ -315,11 +364,17 @@ const BonusSection = () => (
 );
 
 const StudyAreaSection = () => (
-  <section className="py-24 bg-slate-900 relative overflow-hidden">
+  <section className="py-24 bg-[#050510] relative overflow-hidden">
+    {/* Atmospheric Background Elements */}
+    <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-[120px]"></div>
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-[120px]"></div>
+    </div>
+
     <div className="max-w-7xl mx-auto px-4 relative z-10">
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6 italic uppercase">
-          Muito mais que um PDF: <span className="text-blue-500">Sua Área de Estudos</span>
+          Muito mais que um PDF: <span className="text-indigo-400">Sua Área de Estudos</span>
         </h2>
         <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
           Ao adquirir nosso material, você ganha acesso a uma plataforma moderna, organizada e 100% focada na sua produtividade, projetada para que não perca um segundo sequer.
@@ -328,9 +383,9 @@ const StudyAreaSection = () => (
 
       <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
         <div className="space-y-8">
-          <div className="flex gap-6 items-start p-6 bg-slate-800/50 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-colors">
-            <div className="w-14 h-14 bg-blue-900/30 rounded-2xl flex items-center justify-center shrink-0">
-              <LayoutGrid className="w-7 h-7 text-blue-400" />
+          <div className="flex gap-6 items-start p-6 bg-indigo-950/30 rounded-3xl border border-indigo-900/30 hover:border-indigo-500/50 transition-colors group">
+            <div className="w-14 h-14 bg-indigo-900/30 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+              <LayoutGrid className="w-7 h-7 text-indigo-400" />
             </div>
             <div>
               <h4 className="text-xl font-bold text-white mb-2">Organização Inteligente</h4>
@@ -338,11 +393,11 @@ const StudyAreaSection = () => (
             </div>
           </div>
 
-          <div className="flex gap-6 items-start p-6 bg-slate-800/50 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-colors">
-            <div className="w-14 h-14 bg-blue-900/30 rounded-2xl flex items-center justify-center shrink-0">
+          <div className="flex gap-6 items-start p-6 bg-indigo-950/30 rounded-3xl border border-indigo-900/30 hover:border-indigo-500/50 transition-colors group">
+            <div className="w-14 h-14 bg-indigo-900/30 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
               <div className="flex gap-1">
-                <Smartphone className="w-5 h-5 text-blue-400" />
-                <Monitor className="w-5 h-5 text-blue-400" />
+                <Smartphone className="w-5 h-5 text-indigo-400" />
+                <Monitor className="w-5 h-5 text-indigo-400" />
               </div>
             </div>
             <div>
@@ -353,16 +408,17 @@ const StudyAreaSection = () => (
         </div>
 
         <div className="relative">
-          <div className="absolute -inset-10 bg-blue-600/10 rounded-full blur-3xl"></div>
-          <div className="bg-slate-800 p-4 rounded-[2rem] border border-slate-700 shadow-2xl relative">
+          <div className="absolute -inset-10 bg-indigo-600/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="bg-slate-900 p-3 rounded-[2.5rem] border border-indigo-800/50 shadow-2xl relative overflow-hidden group">
+            <div className="absolute inset-0 bg-gradient-to-t from-indigo-950/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
             <img 
-              src="https://i.ibb.co/Kc7T3LDX/13.png" 
+              src="https://i.ibb.co/Z6wK8KKt/Whats-App-Image-2026-03-15-at-21-08-49.jpg" 
               alt="Plataforma de Estudos" 
-              className="rounded-2xl w-full shadow-lg"
+              className="rounded-[2rem] w-full shadow-lg transform group-hover:scale-[1.02] transition-transform duration-700"
             />
-            <div className="absolute -bottom-6 -right-6 bg-blue-600 text-white p-6 rounded-3xl shadow-xl hidden md:block">
+            <div className="absolute -bottom-6 -right-6 bg-indigo-600 text-white p-6 rounded-3xl shadow-xl hidden md:block z-20">
               <p className="font-bold text-lg">100% Online</p>
-              <p className="text-blue-100 text-sm">Acesso Imediato</p>
+              <p className="text-indigo-100 text-sm">Acesso Imediato</p>
             </div>
           </div>
         </div>
@@ -373,26 +429,26 @@ const StudyAreaSection = () => (
           {
             title: "Suporte ao Aluno",
             desc: "Dúvidas sobre o material ou sobre a plataforma? Nossa equipe está pronta para te ajudar dentro da área exclusiva.",
-            icon: <MessageSquare className="w-6 h-6 text-blue-400" />
+            icon: <MessageSquare className="w-6 h-6 text-indigo-400" />
           },
           {
             title: "Acompanhamento",
             desc: "Marque as aulas concluídas e tenha uma visão clara de quanto falta para você bater todo o edital do INSS.",
-            icon: <BarChart className="w-6 h-6 text-blue-400" />
+            icon: <BarChart className="w-6 h-6 text-indigo-400" />
           },
           {
             title: "Atualizações",
             desc: "Qualquer alteração no edital ou novidade legislativa é atualizada automaticamente na sua área de membros.",
-            icon: <RefreshCw className="w-6 h-6 text-blue-400" />
+            icon: <RefreshCw className="w-6 h-6 text-indigo-400" />
           },
           {
             title: "Material Extra",
             desc: "Além das apostilas, tenha acesso a bônus e materiais extras que são liberados periodicamente para os alunos.",
-            icon: <PlusCircle className="w-6 h-6 text-blue-400" />
+            icon: <PlusCircle className="w-6 h-6 text-indigo-400" />
           }
         ].map((item, i) => (
-          <div key={i} className="bg-slate-800/30 p-8 rounded-3xl border border-slate-800 hover:bg-slate-800/50 transition-all">
-            <div className="mb-4">{item.icon}</div>
+          <div key={i} className="bg-indigo-950/20 p-8 rounded-3xl border border-indigo-900/30 hover:bg-indigo-900/40 hover:border-indigo-500/50 transition-all group">
+            <div className="mb-4 group-hover:scale-110 transition-transform">{item.icon}</div>
             <h5 className="text-lg font-bold text-white mb-3">{item.title}</h5>
             <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
           </div>
@@ -458,8 +514,187 @@ const Testimonials = () => {
   );
 };
 
+const BuyingCounter = ({ initialCount }: { initialCount: number }) => {
+  const [count, setCount] = useState(initialCount);
+  const [step, setStep] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStep((prev) => {
+        const nextStep = (prev + 1) % 4;
+        if (nextStep === 0) {
+          setCount((c) => c + 4);
+        } else {
+          setCount((c) => c - 1);
+        }
+        return nextStep;
+      });
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="flex items-center gap-1.5 text-[10px] font-bold text-green-500 mt-2">
+      <span className="relative flex h-2 w-2">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+      </span>
+      {count < 0 ? 0 : count} pessoas finalizando a compra agora
+    </div>
+  );
+};
+
+const UpsellPopup = ({ 
+  isOpen, 
+  onClose, 
+  onContinueOriginal,
+  config
+}: { 
+  isOpen: boolean; 
+  onClose: () => void; 
+  onContinueOriginal: () => void;
+  config: {
+    title: string;
+    description: React.ReactNode;
+    oldPrice: string;
+    newPrice: string;
+    upsellUrl: string;
+    upsellButtonText: string;
+    continueButtonText: string;
+  }
+}) => {
+  useEffect(() => {
+    if (isOpen) {
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#2563eb', '#10b981', '#ffffff']
+      });
+    }
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
+      <div className="bg-white rounded-[2rem] w-full max-w-md overflow-hidden shadow-2xl transform animate-in zoom-in-95 duration-300">
+        <div className="p-6 md:p-8 text-center">
+          <div className="inline-block bg-blue-50 text-blue-600 px-4 py-1 rounded-full text-xs font-bold mb-4">
+            OFERTA EXCLUSIVA LIBERADA
+          </div>
+          
+          <h2 className="text-2xl md:text-3xl font-black text-slate-900 leading-tight mb-4">
+            {config.title}
+          </h2>
+          
+          <div className="text-slate-600 text-sm md:text-base mb-6 leading-relaxed">
+            {config.description}
+          </div>
+
+          <div className="bg-slate-50 rounded-2xl p-6 mb-8 border border-slate-100">
+            <p className="text-slate-400 line-through text-sm font-bold mb-1">De {config.oldPrice}</p>
+            <div className="flex items-center justify-center gap-2">
+              <span className="text-slate-900 font-bold text-lg">Por apenas</span>
+              <span className="text-4xl font-black text-green-600 tracking-tighter">{config.newPrice}</span>
+            </div>
+            <p className="text-[10px] text-slate-400 uppercase font-bold mt-1 tracking-widest">(Pagamento único)</p>
+          </div>
+
+          <div className="space-y-4">
+            <a 
+              href={config.upsellUrl}
+              target="_blank"
+              className="block w-full bg-green-600 hover:bg-green-500 text-white py-4 md:py-5 rounded-2xl font-black text-sm md:text-base transition-all shadow-lg shadow-green-900/20 hover:-translate-y-1"
+            >
+              {config.upsellButtonText}
+            </a>
+            
+            <button 
+              onClick={onContinueOriginal}
+              className="block w-full text-slate-400 hover:text-slate-600 text-xs md:text-sm font-bold underline transition-colors"
+            >
+              {config.continueButtonText}
+            </button>
+          </div>
+        </div>
+        
+        <div className="bg-slate-900 py-3 text-center">
+          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Acesso Imediato & Vitalício</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Pricing = () => {
   const [timeLeft, setTimeLeft] = useState(600); // 10 minutes
+  const [upsellConfig, setUpsellConfig] = useState<{
+    isOpen: boolean;
+    title: string;
+    description: React.ReactNode;
+    oldPrice: string;
+    newPrice: string;
+    upsellUrl: string;
+    upsellButtonText: string;
+    continueButtonText: string;
+    originalUrl: string;
+  }>({
+    isOpen: false,
+    title: "",
+    description: "",
+    oldPrice: "",
+    newPrice: "",
+    upsellUrl: "",
+    upsellButtonText: "",
+    continueButtonText: "",
+    originalUrl: ""
+  });
+
+  const handleBasicClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setUpsellConfig({
+      isOpen: true,
+      title: "🎉 Espere! Antes de finalizar sua compra...",
+      description: (
+        <>
+          Você está quase garantindo a versão básica. <br className="hidden md:block" />
+          Mas neste momento foi liberada para você uma condição especial do <span className="font-bold text-slate-900">Plano Essencial PRF 2026</span>.
+        </>
+      ),
+      oldPrice: "R$ 28,90",
+      newPrice: "R$ 22,90",
+      upsellUrl: UPSELL_PLANO_ESSENCIAL_URL,
+      upsellButtonText: "Quero a promoção do Plano Essencial por R$ 22,90",
+      continueButtonText: "Continuar apenas com a versão básica de R$ 14,90",
+      originalUrl: PLANO_BASICO_URL
+    });
+  };
+
+  const handleEssentialClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setUpsellConfig({
+      isOpen: true,
+      title: "🎉 Espere! Antes de finalizar sua compra...",
+      description: (
+        <>
+          Você está quase garantindo o Plano Essencial. <br className="hidden md:block" />
+          Mas neste momento foi liberada para você uma condição especial do <span className="font-bold text-slate-900">Combo Aprovação PRF 2026</span>.
+        </>
+      ),
+      oldPrice: "R$ 48,90",
+      newPrice: "R$ 39,90",
+      upsellUrl: UPSELL_COMBO_APROVACAO_URL,
+      upsellButtonText: "Quero a promoção do Combo Aprovação por R$ 39,90",
+      continueButtonText: "Continuar apenas com o Plano Essencial de R$ 28,90",
+      originalUrl: PLANO_COMPLETO_URL
+    });
+  };
+
+  const handleContinueOriginal = () => {
+    setUpsellConfig(prev => ({ ...prev, isOpen: false }));
+    window.open(upsellConfig.originalUrl, '_blank');
+  };
 
   useEffect(() => {
     if (timeLeft <= 0) return;
@@ -503,14 +738,21 @@ const Pricing = () => {
               <p className="text-slate-500 line-through text-xs">De R$ 57,00</p>
               <p className="text-3xl font-extrabold text-white">R$ 14,90</p>
               <p className="text-[10px] text-slate-500 uppercase font-bold">Pagamento Único</p>
+              <BuyingCounter initialCount={3} />
             </div>
-            <a href={PLANO_BASICO_URL} target="_blank" className="bg-slate-800 hover:bg-slate-700 text-slate-300 py-4 rounded-xl text-center font-bold text-sm transition-all flex items-center justify-center gap-2">
+            <button 
+              onClick={handleBasicClick}
+              className="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 py-4 rounded-xl text-center font-bold text-sm transition-all flex items-center justify-center gap-2"
+            >
               Escolher Plano Simples <ChevronRight className="w-4 h-4" />
-            </a>
+            </button>
           </div>
 
           {/* Plano Essencial */}
-          <div className="bg-slate-900 border-2 border-blue-900/50 rounded-[2.5rem] p-6 flex flex-col relative shadow-xl shadow-blue-900/5 hover:border-blue-500 transition-all">
+          <div className="bg-slate-900 border-4 border-blue-600 rounded-[2.5rem] p-6 flex flex-col relative transform md:scale-105 shadow-[0_0_50px_-12px_rgba(37,99,235,0.4)] z-10">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-6 py-1.5 rounded-full font-black text-[10px] shadow-xl whitespace-nowrap animate-pulse uppercase tracking-wider">
+               O MAIS ESCOLHIDO
+            </div>
             <div className="mb-6">
               <h3 className="text-xl font-bold text-white mb-1">Plano Essencial</h3>
               <p className="text-blue-400 text-xs font-semibold">O essencial para sua aprovação</p>
@@ -534,16 +776,20 @@ const Pricing = () => {
                  <span className="text-[10px] font-bold text-blue-400 uppercase">Vitalício</span>
               </div>
               <p className="text-[10px] text-slate-500 uppercase font-bold mt-1">Economia de R$ 76,80</p>
+              <BuyingCounter initialCount={15} />
             </div>
-            <a href={PLANO_COMPLETO_URL} target="_blank" className="bg-blue-900/40 hover:bg-blue-800 text-white py-4 rounded-xl text-center font-bold text-sm transition-all flex items-center justify-center gap-2 border border-blue-700">
+            <button 
+              onClick={handleEssentialClick}
+              className="w-full bg-blue-900/40 hover:bg-blue-800 text-white py-4 rounded-xl text-center font-bold text-sm transition-all flex items-center justify-center gap-2 border border-blue-700"
+            >
               Escolher Plano Essencial <ChevronRight className="w-4 h-4" />
-            </a>
+            </button>
           </div>
 
           {/* Combo Aprovação */}
-          <div className="bg-slate-900 border-4 border-blue-600 rounded-[2.5rem] p-6 flex flex-col relative transform md:scale-105 shadow-[0_0_50px_-12px_rgba(37,99,235,0.4)] z-10">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-6 py-1.5 rounded-full font-black text-[10px] shadow-xl whitespace-nowrap animate-pulse uppercase tracking-wider">
-               O MAIS VENDIDO
+          <div className="bg-slate-900 border-2 border-blue-900/50 rounded-[2.5rem] p-6 flex flex-col relative shadow-xl shadow-blue-900/5 hover:border-blue-500 transition-all">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-indigo-600 text-white px-6 py-1.5 rounded-full font-black text-[10px] shadow-xl whitespace-nowrap uppercase tracking-wider">
+               RECOMENDADO
             </div>
             <div className="mb-6">
               <h3 className="text-2xl font-black text-white mb-1 italic tracking-tight">COMBO APROVAÇÃO</h3>
@@ -576,6 +822,7 @@ const Pricing = () => {
                  <p className="text-4xl font-black text-white tracking-tighter">R$ 48,90</p>
                  <span className="text-[10px] font-black text-blue-400 uppercase">Vitalício</span>
               </div>
+              <BuyingCounter initialCount={9} />
             </div>
             <a href={COMBO_APROVACAO_URL} target="_blank" className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white py-5 rounded-xl text-center font-black text-lg transition-all flex items-center justify-center gap-2 shadow-2xl shadow-blue-900/40 hover:-translate-y-1">
               GARANTIR COMBO AGORA <ChevronRight className="w-6 h-6" />
@@ -584,6 +831,12 @@ const Pricing = () => {
           </div>
         </div>
       </div>
+      <UpsellPopup 
+        isOpen={upsellConfig.isOpen} 
+        onClose={() => setUpsellConfig(prev => ({ ...prev, isOpen: false }))} 
+        onContinueOriginal={handleContinueOriginal} 
+        config={upsellConfig}
+      />
     </section>
   );
 };
