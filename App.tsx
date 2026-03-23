@@ -659,36 +659,21 @@ const Pricing = () => {
       description: (
         <>
           Você está quase garantindo a versão básica. <br className="hidden md:block" />
-          Mas neste momento foi liberada para você uma condição especial do <span className="font-bold text-slate-900">Plano Essencial PRF 2026</span>.
+          Mas neste momento foi liberada para você uma condição especial do <span className="font-bold text-slate-900">Plano Completo PRF 2026</span>.
         </>
       ),
-      oldPrice: "R$ 28,90",
-      newPrice: "R$ 22,90",
+      oldPrice: "R$ 26,00",
+      newPrice: "R$ 18,90",
       upsellUrl: UPSELL_PLANO_ESSENCIAL_URL,
-      upsellButtonText: "Quero a promoção do Plano Essencial por R$ 22,90",
-      continueButtonText: "Continuar apenas com a versão básica de R$ 14,90",
+      upsellButtonText: "Quero a promoção do Plano Completo por R$ 18,90",
+      continueButtonText: "Continuar apenas com a versão básica de R$ 10,00",
       originalUrl: PLANO_BASICO_URL
     });
   };
 
-  const handleEssentialClick = (e: React.MouseEvent) => {
+  const handleCompletoClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    setUpsellConfig({
-      isOpen: true,
-      title: "🎉 Espere! Antes de finalizar sua compra...",
-      description: (
-        <>
-          Você está quase garantindo o Plano Essencial. <br className="hidden md:block" />
-          Mas neste momento foi liberada para você uma condição especial do <span className="font-bold text-slate-900">Combo Aprovação PRF 2026</span>.
-        </>
-      ),
-      oldPrice: "R$ 48,90",
-      newPrice: "R$ 39,90",
-      upsellUrl: UPSELL_COMBO_APROVACAO_URL,
-      upsellButtonText: "Quero a promoção do Combo Aprovação por R$ 39,90",
-      continueButtonText: "Continuar apenas com o Plano Essencial de R$ 28,90",
-      originalUrl: PLANO_COMPLETO_URL
-    });
+    window.open(PLANO_COMPLETO_URL, '_blank');
   };
 
   const handleContinueOriginal = () => {
@@ -722,7 +707,7 @@ const Pricing = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 items-stretch">
+        <div className="grid md:grid-cols-2 gap-6 items-stretch max-w-4xl mx-auto">
           {/* Plano Simples */}
           <div className="bg-slate-950 border border-slate-800 rounded-[2.5rem] p-6 flex flex-col hover:border-slate-700 transition-all">
             <div className="mb-6">
@@ -736,7 +721,7 @@ const Pricing = () => {
             </ul>
             <div className="mb-6">
               <p className="text-slate-500 line-through text-xs">De R$ 57,00</p>
-              <p className="text-3xl font-extrabold text-white">R$ 14,90</p>
+              <p className="text-3xl font-extrabold text-white">R$ 10,00</p>
               <p className="text-[10px] text-slate-500 uppercase font-bold">Pagamento Único</p>
               <BuyingCounter initialCount={3} />
             </div>
@@ -748,13 +733,13 @@ const Pricing = () => {
             </button>
           </div>
 
-          {/* Plano Essencial */}
+          {/* Plano Completo */}
           <div className="bg-slate-900 border-4 border-blue-600 rounded-[2.5rem] p-6 flex flex-col relative transform md:scale-105 shadow-[0_0_50px_-12px_rgba(37,99,235,0.4)] z-10">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-6 py-1.5 rounded-full font-black text-[10px] shadow-xl whitespace-nowrap animate-pulse uppercase tracking-wider">
                O MAIS ESCOLHIDO
             </div>
             <div className="mb-6">
-              <h3 className="text-xl font-bold text-white mb-1">Plano Essencial</h3>
+              <h3 className="text-xl font-bold text-white mb-1">Plano Completo</h3>
               <p className="text-blue-400 text-xs font-semibold">O essencial para sua aprovação</p>
             </div>
             <ul className="space-y-3 mb-8 flex-grow">
@@ -772,62 +757,18 @@ const Pricing = () => {
             <div className="mb-6">
               <p className="text-slate-500 line-through text-xs">De R$ 105,70</p>
               <div className="flex items-baseline gap-2">
-                 <p className="text-3xl font-extrabold text-white">R$ 28,90</p>
+                 <p className="text-3xl font-extrabold text-white">R$ 26,00</p>
                  <span className="text-[10px] font-bold text-blue-400 uppercase">Vitalício</span>
               </div>
-              <p className="text-[10px] text-slate-500 uppercase font-bold mt-1">Economia de R$ 76,80</p>
+              <p className="text-[10px] text-slate-500 uppercase font-bold mt-1">Economia de R$ 79,70</p>
               <BuyingCounter initialCount={15} />
             </div>
             <button 
-              onClick={handleEssentialClick}
+              onClick={handleCompletoClick}
               className="w-full bg-blue-900/40 hover:bg-blue-800 text-white py-4 rounded-xl text-center font-bold text-sm transition-all flex items-center justify-center gap-2 border border-blue-700"
             >
-              Escolher Plano Essencial <ChevronRight className="w-4 h-4" />
+              Escolher Plano Completo <ChevronRight className="w-4 h-4" />
             </button>
-          </div>
-
-          {/* Combo Aprovação */}
-          <div className="bg-slate-900 border-2 border-blue-900/50 rounded-[2.5rem] p-6 flex flex-col relative shadow-xl shadow-blue-900/5 hover:border-blue-500 transition-all">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-indigo-600 text-white px-6 py-1.5 rounded-full font-black text-[10px] shadow-xl whitespace-nowrap uppercase tracking-wider">
-               RECOMENDADO
-            </div>
-            <div className="mb-6">
-              <h3 className="text-2xl font-black text-white mb-1 italic tracking-tight">COMBO APROVAÇÃO</h3>
-              <p className="text-blue-400 text-[10px] font-bold uppercase tracking-widest">A experiência completa e definitiva</p>
-            </div>
-            <ul className="space-y-2.5 mb-8 flex-grow">
-              {[
-                "Material Teórico Completo",
-                "Questões Gabaritadas Inéditas",
-                "Mapas Mentais Esquematizados Exclusivos",
-                "Plataforma de Estudos Personalizada",
-                "Simulados Esquematizados",
-                "Revisão Esquematizada Completa",
-                "Redação Discursiva para Concursos",
-                "Como Estudar com PDFs",
-                "Controle Emocional - Disciplina de Ferro",
-                "Atualizações Prioritárias Periódicas",
-                "Suporte Vip 24h"
-              ].map((f, i) => (
-                <li key={i} className="flex gap-2 text-white font-bold italic text-[11px] group">
-                  <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 group-hover:scale-110 transition-transform" />
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <div className="mb-6 bg-blue-950/30 p-5 rounded-2xl border border-blue-900/30">
-              <p className="text-red-500 text-[10px] font-black uppercase mb-1 tracking-tighter">Oferta por Tempo Limitado</p>
-              <p className="text-slate-500 line-through text-xs">De R$ 197,00</p>
-              <div className="flex items-baseline gap-2">
-                 <p className="text-4xl font-black text-white tracking-tighter">R$ 48,90</p>
-                 <span className="text-[10px] font-black text-blue-400 uppercase">Vitalício</span>
-              </div>
-              <BuyingCounter initialCount={9} />
-            </div>
-            <a href={COMBO_APROVACAO_URL} target="_blank" className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white py-5 rounded-xl text-center font-black text-lg transition-all flex items-center justify-center gap-2 shadow-2xl shadow-blue-900/40 hover:-translate-y-1">
-              GARANTIR COMBO AGORA <ChevronRight className="w-6 h-6" />
-            </a>
-            <p className="text-center text-[9px] text-slate-500 mt-3 uppercase font-bold tracking-widest">Acesso Imediato em PDF</p>
           </div>
         </div>
       </div>
