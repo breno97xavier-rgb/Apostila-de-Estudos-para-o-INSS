@@ -54,12 +54,33 @@ const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => 
   }
 };
 
+// Helper function to append current URL parameters to checkout links
+const getCheckoutUrl = (baseUrl: string) => {
+  const search = window.location.search;
+  if (!search) return baseUrl;
+  
+  try {
+    const url = new URL(baseUrl);
+    const params = new URLSearchParams(search);
+    
+    // Merge existing params with current window params
+    params.forEach((value, key) => {
+      url.searchParams.set(key, value);
+    });
+    
+    return url.toString();
+  } catch (e) {
+    const separator = baseUrl.includes('?') ? '&' : '?';
+    return `${baseUrl}${separator}${search.substring(1)}`;
+  }
+};
+
 // --- Components ---
 
 const Navbar = () => (
   <nav className="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
     <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-      <a href={EDITORA_URL} target="_blank" className="flex items-center gap-3 group">
+      <a href={getCheckoutUrl(EDITORA_URL)} target="_blank" className="flex items-center gap-3 group">
         <div className="w-10 h-10 rounded-full overflow-hidden border border-slate-700 group-hover:border-blue-500 transition-colors">
           <img src={LOGO_EDITORIA} alt="Logo Editora" className="w-full h-full object-cover" />
         </div>
@@ -646,7 +667,7 @@ const UpsellPopup = ({
 
           <div className="space-y-4">
             <a 
-              href={config.upsellUrl}
+              href={getCheckoutUrl(config.upsellUrl)}
               target="_blank"
               className="block w-full bg-green-600 hover:bg-green-500 text-white py-4 md:py-5 rounded-2xl font-black text-sm md:text-base transition-all shadow-lg shadow-green-900/20 hover:-translate-y-1"
             >
@@ -736,12 +757,12 @@ const Pricing = () => {
 
   const handleComboClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    window.open(COMBO_APROVACAO_URL, '_blank');
+    window.open(getCheckoutUrl(COMBO_APROVACAO_URL), '_blank');
   };
 
   const handleContinueOriginal = () => {
     setUpsellConfig(prev => ({ ...prev, isOpen: false }));
-    window.open(upsellConfig.originalUrl, '_blank');
+    window.open(getCheckoutUrl(upsellConfig.originalUrl), '_blank');
   };
 
   useEffect(() => {
@@ -976,7 +997,7 @@ const Footer = () => (
   <footer className="bg-[#0b0e14] text-white py-16">
     <div className="max-w-7xl mx-auto px-4 text-center">
       <div className="flex flex-col items-center gap-6 mb-12">
-        <a href={EDITORA_URL} target="_blank" className="flex items-center gap-3 text-2xl font-bold group">
+        <a href={getCheckoutUrl(EDITORA_URL)} target="_blank" className="flex items-center gap-3 text-2xl font-bold group">
            <div className="w-12 h-12 rounded-full overflow-hidden border border-white/10 group-hover:border-blue-500 transition-colors">
               <img src={LOGO_EDITORIA} alt="Logo Editora" className="w-full h-full object-cover" />
            </div>
@@ -997,7 +1018,7 @@ const Footer = () => (
           Este site não é afiliado ao INSS ou ao Governo Federal. O material vendido é de produção própria, destinado exclusivamente para fins educacionais.
         </p>
         <div className="flex flex-col md:flex-row justify-center gap-8 text-sm text-gray-400 mt-8">
-           <a href={WHATSAPP_SUPPORT_URL} target="_blank" className="flex items-center gap-2 justify-center hover:text-green-400 transition-colors">
+           <a href={getCheckoutUrl(WHATSAPP_SUPPORT_URL)} target="_blank" className="flex items-center gap-2 justify-center hover:text-green-400 transition-colors">
               <Smartphone className="w-4 h-4" /> WhatsApp: 41 98842-0201
            </a>
            <div className="flex items-center gap-2 justify-center">
