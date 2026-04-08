@@ -70,14 +70,26 @@ const Navbar = () => (
 );
 
 const Headline = () => (
-  <header className="pt-12 pb-12 bg-gradient-to-b from-slate-900 to-slate-950 overflow-hidden">
-    <div className="max-w-7xl mx-auto px-4 text-center">
+  <header className="relative pt-12 pb-12 bg-gradient-to-b from-slate-900 to-slate-950 overflow-hidden">
+    <div className="absolute inset-0 z-0 opacity-15">
+      <img 
+        src="https://i.ibb.co/6JcfKWtc/Guia-atualizado-sobre-afastamento-pelo-INSS.jpg" 
+        alt="Background INSS" 
+        className="w-full h-full object-cover"
+        referrerPolicy="no-referrer"
+      />
+      <div className="absolute inset-0 bg-slate-900/40"></div>
+    </div>
+    <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
       <div className="inline-block bg-red-900/30 text-red-400 px-4 py-1 rounded-full text-xs font-bold mb-6 tracking-wide uppercase border border-red-900/50">
         Últimas Vagas com Valor Promocional
       </div>
-      <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6 max-w-4xl mx-auto">
+      <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-4 max-w-4xl mx-auto italic">
         O edital do INSS não avisa quando vai sair. <span className="text-blue-500">Quem se prepara depois, fica para trás.</span>
       </h1>
+      <p className="text-xl md:text-2xl text-blue-400 font-bold mb-8 max-w-2xl mx-auto leading-tight italic">
+        Estude com o edital organizado antes do edital ser publicado.
+      </p>
       <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
         Não perca tempo com PDFs genéricos. Tenha em mãos o material mais organizado e focado no cargo de Técnico do Seguro Social para sair na frente da concorrência.
       </p>
@@ -88,7 +100,7 @@ const Headline = () => (
           onClick={(e) => scrollToSection(e, 'planos')}
           className="group flex items-center gap-2 bg-[#0047AB] hover:bg-blue-700 text-white px-8 py-5 rounded-xl text-xl font-bold shadow-xl shadow-blue-900/20 transition-all hover:-translate-y-1"
         >
-          QUERO COMEÇAR DO JEITO CERTO
+          GARANTIR MEU MATERIAL AGORA
           <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
         </a>
         <p className="flex items-center gap-2 text-sm text-slate-500 font-medium">
@@ -137,7 +149,7 @@ const SolutionSection = () => (
     <div className="max-w-7xl mx-auto px-4">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-6 leading-tight">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-6 leading-tight italic">
             Não vendemos milagres. <br/>Vendemos o <span className="text-blue-500">atalho organizado.</span>
           </h2>
           <div className="space-y-6">
@@ -169,10 +181,27 @@ const SolutionSection = () => (
               </div>
             </div>
           </div>
+          <div className="mt-10">
+            <a 
+              href="#planos" 
+              onClick={(e) => scrollToSection(e, 'planos')}
+              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-6 py-4 rounded-xl font-bold transition-all"
+            >
+              GARANTIR MEU MATERIAL AGORA <ChevronRight className="w-5 h-5" />
+            </a>
+          </div>
         </div>
-        <div className="relative text-center">
+        <div className="relative flex justify-center">
           <div className="absolute -inset-4 bg-blue-600/10 rounded-3xl blur-2xl"></div>
-          <img src={COVER_IMG} alt="Capa da Apostila INSS" className="relative w-full max-w-sm mx-auto rounded-2xl shadow-2xl rotate-2" />
+          <div className="book-container">
+            <div className="book-3d">
+              <div className="book-spine">
+                <span>TÉCNICO DO SEGURO SOCIAL - INSS 2026</span>
+              </div>
+              <div className="book-pages"></div>
+              <div className="book-cover" style={{ backgroundImage: `url(${COVER_IMG})` }}></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -182,23 +211,24 @@ const SolutionSection = () => (
 const ComparisonTable = () => (
   <section className="py-20 bg-slate-950">
     <div className="max-w-5xl mx-auto px-4">
-      <h2 className="text-3xl md:text-4xl font-extrabold text-center text-white mb-12">
+      <h2 className="text-3xl md:text-4xl font-extrabold text-center text-white mb-12 italic">
         A diferença entre ser <span className="text-red-600">Reprovado</span> e <span className="text-green-600">Aprovado</span>
       </h2>
-      <div className="grid md:grid-cols-2 gap-8">
-        <div className="border-2 border-red-900/20 rounded-3xl p-8 bg-red-950/10">
+      <div className="grid md:grid-cols-2 gap-0 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl">
+        <div className="p-8 bg-slate-950 border-r border-slate-800">
           <div className="flex items-center gap-2 mb-6 text-red-500 font-bold text-xl uppercase">
             <XCircle className="w-6 h-6" /> Estudar Sem Método
           </div>
           <ul className="space-y-4">
             {["PDFs genéricos e cansativos", "Conteúdo em excesso desnecessário", "Falta de direção clara", "Tempo desperdiçado com besteira", "Sensação constante de atraso"].map((item, i) => (
               <li key={i} className="flex gap-3 text-slate-500 line-through decoration-slate-700">
+                <AlertTriangle className="w-5 h-5 text-red-900 shrink-0" />
                 {item}
               </li>
             ))}
           </ul>
         </div>
-        <div className="border-2 border-green-900/30 rounded-3xl p-8 bg-green-950/10 shadow-xl shadow-green-900/10 relative overflow-hidden">
+        <div className="p-8 bg-slate-900 relative overflow-hidden">
           <div className="absolute top-0 right-0 bg-green-600 text-white px-4 py-1 rounded-bl-xl text-xs font-bold uppercase tracking-wider">
             Recomendado
           </div>
@@ -207,7 +237,7 @@ const ComparisonTable = () => (
           </div>
           <ul className="space-y-4">
             {["Conteúdo organizado por matéria", "Foco total no que realmente cai", "Estudo 3x mais rápido e fluido", "Clareza total do caminho até a prova", "Menos ansiedade e mais controle"].map((item, i) => (
-              <li key={i} className="flex gap-3 text-slate-200 font-semibold italic">
+              <li key={i} className="flex gap-3 text-white font-semibold italic">
                 <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" /> {item}
               </li>
             ))}
@@ -219,15 +249,12 @@ const ComparisonTable = () => (
 );
 
 const PreviewSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % PAGES_PREVIEW.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + PAGES_PREVIEW.length) % PAGES_PREVIEW.length);
-  };
+  const previews = [
+    { img: PAGES_PREVIEW[0], label: "Direito Previdenciário" },
+    { img: PAGES_PREVIEW[1], label: "Direito Administrativo" },
+    { img: PAGES_PREVIEW[2], label: "Língua Portuguesa" },
+    { img: PAGES_PREVIEW[3], label: "Mapas Mentais" }
+  ];
 
   return (
     <section id="preview" className="py-20 bg-slate-950 text-white overflow-hidden">
@@ -247,64 +274,59 @@ const PreviewSection = () => {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="relative group">
-          {/* Main Image Container */}
-          <div className="relative aspect-[3/4] md:aspect-[4/3] max-w-2xl mx-auto bg-slate-900 rounded-[2rem] border-4 border-slate-800 shadow-2xl overflow-hidden shadow-blue-900/20">
-            <div className="absolute inset-0 flex items-center justify-center p-4 md:p-8">
-              <img 
-                src={PAGES_PREVIEW[currentIndex]} 
-                alt={`Página ${currentIndex + 1}`} 
-                className="max-w-full max-h-full object-contain rounded-lg shadow-lg"
-              />
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {previews.map((item, i) => (
+            <div key={i} className="space-y-4 group">
+              <div className="aspect-[3/4] bg-slate-900 rounded-2xl border-2 border-slate-800 overflow-hidden shadow-xl group-hover:border-blue-500 transition-all">
+                <img 
+                  src={item.img} 
+                  alt={item.label} 
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <p className="text-center text-sm font-bold text-slate-400 group-hover:text-white transition-colors">{item.label}</p>
             </div>
-            
-            {/* Navigation Overlays (Mobile Friendly) */}
-            <div className="absolute inset-y-0 left-0 w-1/4 cursor-pointer" onClick={prevSlide}></div>
-            <div className="absolute inset-y-0 right-0 w-1/4 cursor-pointer" onClick={nextSlide}></div>
-          </div>
-
-          {/* Desktop Navigation Buttons */}
-          <button 
-            onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-slate-800 hover:bg-blue-600 text-white p-4 rounded-full shadow-xl transition-all border border-slate-700 z-20"
-            aria-label="Página Anterior"
-          >
-            <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
-          </button>
-          
-          <button 
-            onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 bg-slate-800 hover:bg-blue-600 text-white p-4 rounded-full shadow-xl transition-all border border-slate-700 z-20"
-            aria-label="Próxima Página"
-          >
-            <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
-          </button>
+          ))}
         </div>
-
-        {/* Indicators & Info */}
-        <div className="mt-12 text-center space-y-4">
-          <div className="flex justify-center gap-2">
-            {PAGES_PREVIEW.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrentIndex(i)}
-                className={`h-1.5 rounded-full transition-all ${currentIndex === i ? 'w-8 bg-blue-500' : 'w-2 bg-slate-700 hover:bg-slate-600'}`}
-              />
-            ))}
-          </div>
-          <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">
-            Página {currentIndex + 1} de {PAGES_PREVIEW.length}
-          </p>
-          <div className="pt-4 flex items-center justify-center gap-2 text-slate-400 text-sm">
-            <HelpCircle className="w-4 h-4" />
-            <span>Use as setas para navegar pelo conteúdo interno</span>
-          </div>
+        <div className="mt-12 text-center">
+          <a 
+            href="#planos" 
+            onClick={(e) => scrollToSection(e, 'planos')}
+            className="inline-flex items-center gap-2 text-blue-400 font-bold hover:text-blue-300 transition-colors"
+          >
+            GARANTIR MEU MATERIAL AGORA <ChevronRight className="w-5 h-5" />
+          </a>
         </div>
       </div>
     </section>
   );
 };
+
+const TargetAudienceSection = () => (
+  <section className="py-20 bg-slate-950">
+    <div className="max-w-4xl mx-auto px-4">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl md:text-5xl font-black text-white italic uppercase tracking-tighter">
+          Esse material é <span className="text-blue-500">para você se…</span>
+        </h2>
+      </div>
+      <div className="grid md:grid-cols-2 gap-6">
+        {[
+          "Quer se preparar com antecedência e bater o edital antes de todo mundo.",
+          "Não tem tempo de organizar o conteúdo sozinho e quer tudo mastigado.",
+          "Busca um material direto ao ponto, sem enrolação e focado no INSS.",
+          "Precisa de um método que facilite a memorização e a prática de questões."
+        ].map((item, i) => (
+          <div key={i} className="flex gap-4 p-6 bg-slate-900 rounded-2xl border border-slate-800">
+            <CheckCircle2 className="w-6 h-6 text-green-500 shrink-0" />
+            <p className="text-slate-200 font-medium">{item}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
 
 const BonusSection = () => (
   <section className="py-20 bg-gradient-to-b from-slate-950 to-slate-900">
@@ -498,6 +520,27 @@ const Testimonials = () => {
           ))}
         </div>
 
+        <div className="mb-20">
+          <h3 className="text-xl md:text-2xl font-bold text-white text-center mb-10 italic uppercase">Depoimentos de nossos alunos</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              "oEbvpN_Kx44",
+              "6aY24_7rCJ8",
+              "5CQtS6BZVhQ"
+            ].map((id, i) => (
+              <div key={i} className="aspect-[9/16] bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl">
+                <iframe 
+                  src={`https://www.youtube.com/embed/${id}`}
+                  title={`Depoimento ${i + 1}`}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="text-center mb-8">
           <h3 className="text-xl md:text-2xl font-bold text-blue-400 italic uppercase">Nossos alunos que imprimiram o material</h3>
         </div>
@@ -659,21 +702,41 @@ const Pricing = () => {
       description: (
         <>
           Você está quase garantindo a versão básica. <br className="hidden md:block" />
-          Mas neste momento foi liberada para você uma condição especial do <span className="font-bold text-slate-900">Plano Completo PRF 2026</span>.
+          Mas neste momento foi liberada para você uma condição especial do <span className="font-bold text-slate-900">Plano Essencial INSS 2026</span>.
         </>
       ),
       oldPrice: "R$ 26,00",
       newPrice: "R$ 18,90",
       upsellUrl: UPSELL_PLANO_ESSENCIAL_URL,
-      upsellButtonText: "Quero a promoção do Plano Completo por R$ 18,90",
+      upsellButtonText: "Quero a promoção do Plano Essencial por R$ 18,90",
       continueButtonText: "Continuar apenas com a versão básica de R$ 10,00",
       originalUrl: PLANO_BASICO_URL
     });
   };
 
-  const handleCompletoClick = (e: React.MouseEvent) => {
+  const handleEssencialClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    window.open(PLANO_COMPLETO_URL, '_blank');
+    setUpsellConfig({
+      isOpen: true,
+      title: "🎉 Espere! Antes de finalizar sua compra...",
+      description: (
+        <>
+          Você está quase garantindo o Plano Essencial. <br className="hidden md:block" />
+          Mas neste momento foi liberada para você uma condição especial do <span className="font-bold text-slate-900">Combo Aprovação INSS 2026</span>.
+        </>
+      ),
+      oldPrice: "R$ 37,00",
+      newPrice: "R$ 31,90",
+      upsellUrl: UPSELL_COMBO_APROVACAO_URL,
+      upsellButtonText: "Quero a promoção do Combo Aprovação por R$ 31,90",
+      continueButtonText: "Continuar apenas com o Plano Essencial de R$ 26,00",
+      originalUrl: PLANO_COMPLETO_URL
+    });
+  };
+
+  const handleComboClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.open(COMBO_APROVACAO_URL, '_blank');
   };
 
   const handleContinueOriginal = () => {
@@ -701,22 +764,25 @@ const Pricing = () => {
              <Clock className="w-5 h-5 animate-pulse" /> A OFERTA EXPIRA EM: {formatTime(timeLeft)}
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6 italic">ESCOLHA SEU PLANO</h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-4">
             O valor cobrado é irrisório perto do salário de <span className="text-blue-400 font-bold">R$ 5.905,79</span> do cargo. 
             É um investimento na sua mudança de vida.
           </p>
+          <p className="text-orange-500 font-black uppercase tracking-widest text-sm animate-pulse">
+            ⚡ Preço promocional por tempo limitado — garanta antes que o edital saia
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 items-stretch max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 items-stretch">
           {/* Plano Simples */}
-          <div className="bg-slate-950 border border-slate-800 rounded-[2.5rem] p-6 flex flex-col hover:border-slate-700 transition-all">
+          <div className="bg-slate-950 border border-slate-800 rounded-[2.5rem] p-6 flex flex-col hover:border-slate-700 transition-all opacity-80 hover:opacity-100">
             <div className="mb-6">
               <h3 className="text-xl font-bold text-slate-300 mb-1">Plano Simples</h3>
               <p className="text-slate-500 text-xs">Ideal para quem quer o básico</p>
             </div>
             <ul className="space-y-3 mb-8 flex-grow">
               <li className="flex gap-2 text-sm text-slate-400">
-                <CheckCircle2 className="w-4 h-4 text-green-600 shrink-0" /> Conteúdo básico em PDF
+                <CheckCircle2 className="w-4 h-4 text-green-600 shrink-0" /> Material Teórico Completo
               </li>
             </ul>
             <div className="mb-6">
@@ -729,17 +795,14 @@ const Pricing = () => {
               onClick={handleBasicClick}
               className="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 py-4 rounded-xl text-center font-bold text-sm transition-all flex items-center justify-center gap-2"
             >
-              Escolher Plano Simples <ChevronRight className="w-4 h-4" />
+              GARANTIR MEU MATERIAL AGORA <ChevronRight className="w-4 h-4" />
             </button>
           </div>
 
-          {/* Plano Completo */}
-          <div className="bg-slate-900 border-4 border-blue-600 rounded-[2.5rem] p-6 flex flex-col relative transform md:scale-105 shadow-[0_0_50px_-12px_rgba(37,99,235,0.4)] z-10">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-6 py-1.5 rounded-full font-black text-[10px] shadow-xl whitespace-nowrap animate-pulse uppercase tracking-wider">
-               O MAIS ESCOLHIDO
-            </div>
+          {/* Plano Essencial */}
+          <div className="bg-slate-900 border-2 border-slate-800 rounded-[2.5rem] p-6 flex flex-col relative shadow-xl opacity-90 hover:opacity-100 transition-all">
             <div className="mb-6">
-              <h3 className="text-xl font-bold text-white mb-1">Plano Completo</h3>
+              <h3 className="text-xl font-bold text-white mb-1">Plano Essencial</h3>
               <p className="text-blue-400 text-xs font-semibold">O essencial para sua aprovação</p>
             </div>
             <ul className="space-y-3 mb-8 flex-grow">
@@ -764,10 +827,55 @@ const Pricing = () => {
               <BuyingCounter initialCount={15} />
             </div>
             <button 
-              onClick={handleCompletoClick}
+              onClick={handleEssencialClick}
               className="w-full bg-blue-900/40 hover:bg-blue-800 text-white py-4 rounded-xl text-center font-bold text-sm transition-all flex items-center justify-center gap-2 border border-blue-700"
             >
-              Escolher Plano Completo <ChevronRight className="w-4 h-4" />
+              GARANTIR MEU MATERIAL AGORA <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* Combo Aprovação */}
+          <div className="bg-slate-900 border-4 border-blue-600 rounded-[2.5rem] p-6 flex flex-col relative transform md:scale-105 shadow-[0_0_50px_-12px_rgba(37,99,235,0.4)] z-10">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-6 py-1.5 rounded-full font-black text-[10px] shadow-xl whitespace-nowrap animate-pulse uppercase tracking-wider">
+               O MAIS ESCOLHIDO
+            </div>
+            <div className="mb-6">
+              <h3 className="text-2xl font-black text-white mb-1 italic tracking-tight">COMBO APROVAÇÃO</h3>
+              <p className="text-blue-400 text-[10px] font-bold uppercase tracking-widest">A experiência completa e definitiva</p>
+            </div>
+            <ul className="space-y-2 mb-8 flex-grow">
+              {[
+                "Material Teórico Completo",
+                "Questões Gabaritadas Inéditas",
+                "Mapas Mentais Esquematizados Exclusivos",
+                "Plataforma de Estudos Personalizada",
+                "Simulados Esquematizados",
+                "Revisão Completa",
+                "Redação Discursiva",
+                "Como Estudar com PDFs",
+                "Disciplina de Ferro",
+                "Controle Emocional",
+                "Acesso Imediato"
+              ].map((f, i) => (
+                <li key={i} className="flex gap-2 text-white font-bold italic text-[11px] group">
+                  <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 group-hover:scale-110 transition-transform" />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <div className="mb-6 bg-blue-950/30 p-4 rounded-2xl border border-blue-900/30">
+              <p className="text-slate-500 line-through text-xs">De R$ 197,00</p>
+              <div className="flex items-baseline gap-2">
+                 <p className="text-4xl font-black text-white tracking-tighter">R$ 37,00</p>
+                 <span className="text-[10px] font-black text-blue-400 uppercase">Vitalício</span>
+              </div>
+              <BuyingCounter initialCount={24} />
+            </div>
+            <button 
+              onClick={handleComboClick}
+              className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white py-5 rounded-xl text-center font-black text-lg transition-all flex items-center justify-center gap-2 shadow-2xl shadow-blue-900/40 hover:-translate-y-1"
+            >
+              GARANTIR MEU MATERIAL AGORA <ChevronRight className="w-6 h-6" />
             </button>
           </div>
         </div>
@@ -911,11 +1019,42 @@ const FinalCTA = () => (
           onClick={(e) => scrollToSection(e, 'planos')}
           className="inline-flex items-center gap-3 bg-white text-blue-700 px-10 py-6 rounded-2xl text-2xl font-black shadow-2xl hover:bg-blue-50 transition-all uppercase italic tracking-tight"
         >
-           COMEÇAR MINHA PREPARAÇÃO AGORA <ChevronRight className="w-8 h-8" />
+           GARANTIR MEU MATERIAL AGORA <ChevronRight className="w-8 h-8" />
         </a>
      </div>
   </section>
 );
+
+const StickyMobileCTA = () => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const pricingSection = document.getElementById('planos');
+      if (pricingSection) {
+        const rect = pricingSection.getBoundingClientRect();
+        setIsVisible(rect.top > window.innerHeight);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  if (!isVisible) return null;
+
+  return (
+    <div className="md:hidden fixed bottom-4 inset-x-4 z-50 animate-in fade-in slide-in-from-bottom-10 duration-500">
+       <a 
+          href="#planos" 
+          onClick={(e) => scrollToSection(e, 'planos')}
+          className="flex items-center justify-center gap-2 w-full bg-blue-600 text-white p-5 rounded-2xl font-bold shadow-2xl animate-pulse"
+        >
+          GARANTIR MEU MATERIAL AGORA <ArrowRight className="w-5 h-5" />
+       </a>
+    </div>
+  );
+};
 
 export default function App() {
   return (
@@ -926,23 +1065,15 @@ export default function App() {
       <ComparisonTable />
       <PreviewSection />
       <BonusSection />
+      <TargetAudienceSection />
       <StudyAreaSection />
       <Testimonials />
       <Guarantee />
-      <Pricing />
       <FAQ />
+      <Pricing />
       <FinalCTA />
       <Footer />
-
-      <div className="md:hidden fixed bottom-4 inset-x-4 z-50">
-         <a 
-            href="#planos" 
-            onClick={(e) => scrollToSection(e, 'planos')}
-            className="flex items-center justify-center gap-2 w-full bg-blue-600 text-white p-5 rounded-2xl font-bold shadow-2xl animate-pulse"
-          >
-            QUERO COMEÇAR AGORA <ArrowRight className="w-5 h-5" />
-         </a>
-      </div>
+      <StickyMobileCTA />
     </div>
   );
 }
