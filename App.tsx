@@ -77,6 +77,29 @@ const getCheckoutUrl = (baseUrl: string) => {
 
 // --- Components ---
 
+const Book3D = ({ cover, title, size = "normal", className = "" }: { cover: string, title: string, size?: "small" | "normal" | "large", className?: string }) => {
+  const sizeClasses = {
+    small: "w-[120px] h-[170px]",
+    normal: "w-[250px] h-[350px]",
+    large: "w-[300px] h-[420px]"
+  };
+
+  const spineWidth = size === "small" ? "25px" : "50px";
+  const translateZ = size === "small" ? "12px" : "25px";
+
+  return (
+    <div className={`book-container ${className}`}>
+      <div className={`book-3d ${sizeClasses[size]}`}>
+        <div className="book-spine" style={{ width: spineWidth, transform: `rotateY(-90deg) translateZ(${translateZ})` }}>
+          <span style={{ width: size === "small" ? "170px" : "350px" }}>{title}</span>
+        </div>
+        <div className="book-pages" style={{ transform: `translateZ(0)` }}></div>
+        <div className="book-cover" style={{ backgroundImage: `url(${cover})`, transform: `translateZ(${translateZ})` }}></div>
+      </div>
+    </div>
+  );
+};
+
 const Navbar = () => (
   <nav className="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
     <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
@@ -214,15 +237,11 @@ const SolutionSection = () => (
         </div>
         <div className="relative flex justify-center">
           <div className="absolute -inset-4 bg-blue-600/10 rounded-3xl blur-2xl"></div>
-          <div className="book-container">
-            <div className="book-3d">
-              <div className="book-spine">
-                <span>TÉCNICO DO SEGURO SOCIAL - INSS 2026</span>
-              </div>
-              <div className="book-pages"></div>
-              <div className="book-cover" style={{ backgroundImage: `url(${COVER_IMG})` }}></div>
-            </div>
-          </div>
+          <Book3D 
+            cover={COVER_IMG} 
+            title="TÉCNICO DO SEGURO SOCIAL - INSS 2026" 
+            size="normal"
+          />
         </div>
       </div>
     </div>
@@ -325,25 +344,68 @@ const PreviewSection = () => {
 };
 
 const TargetAudienceSection = () => (
-  <section className="py-20 bg-slate-950">
-    <div className="max-w-4xl mx-auto px-4">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-5xl font-black text-white italic uppercase tracking-tighter">
-          Esse material é <span className="text-blue-500">para você se…</span>
-        </h2>
-      </div>
-      <div className="grid md:grid-cols-2 gap-6">
-        {[
-          "Quer se preparar com antecedência e bater o edital antes de todo mundo.",
-          "Não tem tempo de organizar o conteúdo sozinho e quer tudo mastigado.",
-          "Busca um material direto ao ponto, sem enrolação e focado no INSS.",
-          "Precisa de um método que facilite a memorização e a prática de questões."
-        ].map((item, i) => (
-          <div key={i} className="flex gap-4 p-6 bg-slate-900 rounded-2xl border border-slate-800">
-            <CheckCircle2 className="w-6 h-6 text-green-500 shrink-0" />
-            <p className="text-slate-200 font-medium">{item}</p>
+  <section className="py-20 bg-slate-950 overflow-hidden">
+    <div className="max-w-7xl mx-auto px-4">
+      <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-5xl font-black text-white italic uppercase tracking-tighter mb-6">
+              Esse material é <span className="text-blue-500">para você se…</span>
+            </h2>
+            <p className="text-slate-400 text-lg">Identificou-se com algum desses pontos? Então você está no lugar certo.</p>
           </div>
-        ))}
+          <div className="grid gap-4">
+            {[
+              "Quer se preparar com antecedência e bater o edital antes de todo mundo.",
+              "Não tem tempo de organizar o conteúdo sozinho e quer tudo mastigado.",
+              "Busca um material direto ao ponto, sem enrolação e focado no INSS.",
+              "Precisa de um método que facilite a memorização e a prática de questões."
+            ].map((item, i) => (
+              <div key={i} className="flex gap-4 p-6 bg-slate-900 rounded-2xl border border-slate-800 hover:border-blue-500/50 transition-colors group">
+                <CheckCircle2 className="w-6 h-6 text-green-500 shrink-0 group-hover:scale-110 transition-transform" />
+                <p className="text-slate-200 font-medium">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="relative pt-20 pb-10">
+          {/* Creative 3D Showcase */}
+          <div className="relative flex items-center justify-center h-[400px] md:h-[500px]">
+            {/* Background Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-blue-600/10 rounded-full blur-[80px] md:blur-[100px]"></div>
+            
+            {/* Bonus 1 - Left */}
+            <div className="absolute left-[-50px] md:left-0 top-1/2 -translate-y-1/2 -rotate-[20deg] md:-rotate-[15deg] scale-[0.45] md:scale-75 opacity-60 hover:opacity-100 hover:scale-80 transition-all duration-500 z-10">
+              <Book3D 
+                cover="https://i.ibb.co/x8KzRmtB/2.png" 
+                title="1.500 QUESTÕES INÉDITAS" 
+                size="normal"
+              />
+            </div>
+
+            {/* Bonus 2 - Right */}
+            <div className="absolute right-[-50px] md:right-0 top-1/2 -translate-y-1/2 rotate-[20deg] md:rotate-[15deg] scale-[0.45] md:scale-75 opacity-60 hover:opacity-100 hover:scale-80 transition-all duration-500 z-10">
+              <Book3D 
+                cover="https://i.ibb.co/Q3T9pV1Y/C-pia-de-Capa-de-Livro-Infantil-Ilustrado-Vibrante-PCD-Inclusivo-4.png" 
+                title="MAPAS MENTAIS EXCLUSIVOS" 
+                size="normal"
+              />
+            </div>
+
+            {/* Main Material - Center */}
+            <div className="relative z-20 transform scale-[0.75] md:scale-100 hover:scale-105 transition-transform duration-500">
+              <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-6 py-2 rounded-full text-xs md:text-sm font-black italic tracking-widest shadow-xl animate-bounce whitespace-nowrap">
+                MATERIAL PRINCIPAL
+              </div>
+              <Book3D 
+                cover={COVER_IMG} 
+                title="TÉCNICO DO SEGURO SOCIAL - INSS 2026" 
+                size="large"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -351,55 +413,57 @@ const TargetAudienceSection = () => (
 
 const BonusSection = () => (
   <section className="py-20 bg-gradient-to-b from-slate-950 to-slate-900">
-    <div className="max-w-5xl mx-auto px-4">
-      <div className="text-center mb-12">
+    <div className="max-w-6xl mx-auto px-4">
+      <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-black text-white mb-4 italic uppercase tracking-tighter">
           Bônus <span className="text-blue-500">Exclusivos</span>
         </h2>
         <p className="text-slate-400 font-medium">Tudo isso será seu <span className="text-green-500 font-bold">GRATUITAMENTE</span> ao garantir o Plano Completo hoje.</p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
         {[
           {
             title: "1.500 Questões Inéditas",
             desc: "Pratique com o nível real da prova e comentários detalhados.",
             price: "R$ 29,90",
-            icon: <HelpCircle className="w-8 h-8 text-blue-400" />
+            cover: "https://i.ibb.co/x8KzRmtB/2.png",
+            spine: "1.500 QUESTÕES INÉDITAS"
           },
           {
             title: "Mapas Mentais",
             desc: "Memorize em segundos o que demoraria horas de leitura cansativa.",
             price: "R$ 26,90",
-            icon: <Book className="w-8 h-8 text-blue-400" />
-          },
-          {
-            title: "Planilha de Estudos",
-            desc: "Sua organização diária pronta para usar, do zero à aprovação.",
-            price: "R$ 12,90",
-            icon: <Clock className="w-8 h-8 text-blue-400" />
+            cover: "https://i.ibb.co/Q3T9pV1Y/C-pia-de-Capa-de-Livro-Infantil-Ilustrado-Vibrante-PCD-Inclusivo-4.png",
+            spine: "MAPAS MENTAIS EXCLUSIVOS"
           }
         ].map((bonus, i) => (
-          <div key={i} className="bg-slate-800 p-8 rounded-3xl border-2 border-slate-700 shadow-xl shadow-blue-900/10 relative overflow-hidden group hover:-translate-y-2 transition-all">
-            <div className="absolute top-0 right-0 bg-red-600 text-white px-4 py-1 rounded-bl-2xl text-xs font-bold uppercase">Grátis</div>
-            <div className="mb-6 bg-blue-900/20 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-              {bonus.icon}
+          <div key={i} className="flex flex-col items-center text-center group">
+            <div className="mb-10 transform group-hover:-translate-y-4 transition-transform duration-500">
+              <Book3D 
+                cover={bonus.cover} 
+                title={bonus.spine} 
+                size="normal"
+              />
             </div>
-            <h4 className="text-xl font-bold text-white mb-3">{bonus.title}</h4>
-            <p className="text-slate-400 text-sm leading-relaxed mb-6">{bonus.desc}</p>
-            <div className="pt-4 border-t border-slate-700">
-              <span className="text-slate-500 line-through text-sm font-medium">Valor Original: {bonus.price}</span>
+            <div className="bg-slate-800/50 p-8 rounded-3xl border-2 border-slate-700 shadow-xl shadow-blue-900/10 relative overflow-hidden w-full">
+              <div className="absolute top-0 right-0 bg-red-600 text-white px-4 py-1 rounded-bl-2xl text-xs font-bold uppercase">Grátis</div>
+              <h4 className="text-2xl font-bold text-white mb-3">{bonus.title}</h4>
+              <p className="text-slate-400 text-sm leading-relaxed mb-6">{bonus.desc}</p>
+              <div className="pt-4 border-t border-slate-700">
+                <span className="text-slate-500 line-through text-sm font-medium">Valor Original: {bonus.price}</span>
+              </div>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="mt-12 bg-blue-600 p-8 rounded-[2.5rem] shadow-2xl shadow-blue-900/20 text-center relative overflow-hidden">
+      <div className="mt-16 bg-blue-600 p-8 rounded-[2.5rem] shadow-2xl shadow-blue-900/20 text-center relative overflow-hidden max-w-4xl mx-auto">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
           <div className="absolute top-0 left-0 w-40 h-40 bg-white rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
           <div className="absolute bottom-0 right-0 w-40 h-40 bg-white rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
         </div>
-        <p className="text-blue-100 font-bold uppercase tracking-widest mb-2">Economia Total de R$ 69,70</p>
+        <p className="text-blue-100 font-bold uppercase tracking-widest mb-2">Economia Total de R$ 56,80</p>
         <h3 className="text-2xl md:text-3xl font-black text-white italic">VOCÊ NÃO PAGA NADA POR ESSES BÔNUS HOJE!</h3>
       </div>
     </div>
